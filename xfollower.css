@@ -1,0 +1,961 @@
+/* ==========================================================================
+   X (Twitter) Live Follower Counter - Dark Mode Aesthetic Architecture
+   Pixel-perfect styling matching exact design specifications
+   ========================================================================== */
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-cinzel: 'Cinzel', Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+
+  /* Deep Dark Theme Palette */
+  --bg-app: #08090d;
+  --bg-card: #0f1218;
+  --bg-card-elevated: #151922;
+  --bg-input: #0b0d13;
+  --border-subtle: #1c222e;
+  --border-card: #222938;
+  --border-focus: #3b82f6;
+
+  --text-main: #ffffff;
+  --text-muted: #8b98a5;
+  --text-subtle: #566474;
+  --text-gold: #f59e0b;
+  --text-gold-light: #fbbf24;
+
+  --accent-live: #10b981;
+  --accent-live-glow: rgba(16, 185, 129, 0.4);
+  --accent-pink: #ec4899;
+  --accent-purple: #8b5cf6;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-pill: 9999px;
+
+  --transition-smooth: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="light"] {
+  --bg-app: #f4f6fa;
+  --bg-card: #ffffff;
+  --bg-card-elevated: #f8fafc;
+  --bg-input: #ffffff;
+  --border-subtle: #e2e8f0;
+  --border-card: #cbd5e1;
+  --border-focus: #2563eb;
+
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --text-subtle: #94a3b8;
+  --text-gold: #b45309;
+  --text-gold-light: #d97706;
+}
+
+/* Global Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-app);
+  background-image: radial-gradient(#181d28 1px, transparent 1px);
+  background-size: 24px 24px;
+  color: var(--text-main);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* App Header */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(8, 9, 13, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.header-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  color: var(--text-main);
+}
+
+.brand-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.live-pill-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--accent-live);
+  font-family: var(--font-mono);
+}
+
+.live-pulse-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-live);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent-live);
+  animation: pulse-ring 1.8s infinite ease-in-out;
+}
+
+.theme-toggle-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all var(--transition-smooth);
+}
+
+.theme-toggle-btn:hover {
+  background: var(--bg-card-elevated);
+  border-color: var(--border-card);
+}
+
+/* Main Container */
+.main-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Search Bar Section */
+.search-bar-section {
+  width: 100%;
+}
+
+.search-form {
+  width: 100%;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 0.35rem 0.45rem 0.35rem 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: all var(--transition-smooth);
+}
+
+.search-input-wrapper:focus-within {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+.search-icon {
+  color: var(--text-subtle);
+  display: flex;
+  align-items: center;
+  margin-right: 0.65rem;
+}
+
+.search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  font-family: var(--font-sans);
+}
+
+.search-input::placeholder {
+  color: var(--text-subtle);
+}
+
+.search-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.65rem 1.15rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+}
+
+.search-submit-btn:hover {
+  background: #e2e8f0;
+  transform: translateY(-1px);
+}
+
+.search-arrow-icon {
+  stroke: currentColor;
+}
+
+/* Inline Error Banner */
+.error-banner {
+  margin-top: 0.75rem;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #f87171;
+  font-size: 0.875rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Main Live Tracker Card (Screenshot 1 Exact Layout)
+   ========================================================================== */
+.tracker-main-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 24px;
+  padding: 2.75rem 1.75rem 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+/* Subtle background accent glow behind profile */
+.tracker-main-card::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.15) 0%, rgba(139, 92, 246, 0.08) 50%, transparent 70%);
+  pointer-events: none;
+  filter: blur(30px);
+}
+
+/* Profile Avatar with Iridescent Rainbow Gradient Ring */
+.avatar-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.25rem;
+}
+
+.avatar-gradient-ring {
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+  padding: 3.5px;
+  background: linear-gradient(135deg, #f43f5e 0%, #ec4899 30%, #8b5cf6 65%, #06b6d4 100%);
+  box-shadow: 0 0 30px rgba(236, 72, 153, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #12151c;
+  display: block;
+}
+
+/* LIVE badge pinned under Avatar */
+.avatar-live-badge {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0f1218;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  padding: 0.15rem 0.65rem;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--accent-live);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+}
+
+.live-dot-green {
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-live);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent-live);
+}
+
+/* Tracking Pill Button */
+.tracking-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-pill);
+  padding: 0.35rem 0.95rem;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: 1.15rem;
+  transition: all var(--transition-smooth);
+}
+
+.tracking-pill:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--text-main);
+}
+
+.tracking-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #f43f5e;
+  border-radius: 50%;
+}
+
+.tracking-arrow {
+  font-size: 0.75rem;
+  color: var(--text-subtle);
+}
+
+/* Profile Display Name in Serif */
+.profile-name {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.01em;
+}
+
+/* Subtitle */
+.profile-tagline {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #d19a4b;
+  margin-bottom: 1.75rem;
+  font-family: var(--font-serif);
+}
+
+/* Massive Big Follower Number */
+.follower-hero-number {
+  font-family: var(--font-sans);
+  font-size: 5.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 0.85rem;
+  transition: transform 0.2s ease;
+  user-select: all;
+}
+
+.follower-hero-number.updating {
+  animation: scale-bump 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes scale-bump {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+/* Uppercase Spaced Follower Label */
+.follower-label {
+  font-family: var(--font-cinzel);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #8b98a5;
+  margin-bottom: 2.5rem;
+}
+
+/* Live Monitoring Progress Ticker Bar */
+.monitoring-ticker-bar {
+  width: 100%;
+  max-width: 600px;
+  background: rgba(18, 21, 28, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 0.75rem 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ticker-left {
+  display: flex;
+  align-items: center;
+}
+
+/* Circular Countdown SVG */
+.circular-countdown {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.countdown-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.circle-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 3.5;
+}
+
+.circle-progress {
+  fill: none;
+  stroke: #f43f5e;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.2s linear;
+}
+
+.countdown-mini-text {
+  position: absolute;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.ticker-center {
+  flex: 1;
+  text-align: center;
+}
+
+.ticker-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.ticker-seconds-highlight {
+  color: #f59e0b;
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.ticker-sub {
+  font-size: 0.75rem;
+  color: var(--text-subtle);
+  margin-top: 0.1rem;
+}
+
+.ticker-right {
+  display: flex;
+  align-items: center;
+}
+
+.pause-toggle-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  transition: all var(--transition-smooth);
+}
+
+.pause-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   Telemetry 4-Metric Grid (Screenshot 2 Exact Layout)
+   ========================================================================== */
+.telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.telemetry-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 1rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.telemetry-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--text-subtle);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.45rem;
+}
+
+.telemetry-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.mono-val {
+  font-family: var(--font-mono);
+}
+
+.delta-val {
+  color: var(--accent-live);
+}
+
+.time-val {
+  color: var(--text-gold-light);
+}
+
+/* ==========================================================================
+   Sparkline Trend Card (Screenshot 2 Exact Layout)
+   ========================================================================== */
+.sparkline-section {
+  width: 100%;
+}
+
+.sparkline-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.sparkline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+}
+
+.sparkline-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.sparkline-caption {
+  font-size: 0.75rem;
+  color: var(--text-subtle);
+  font-family: var(--font-mono);
+}
+
+.sparkline-canvas-container {
+  position: relative;
+  width: 100%;
+  height: 90px;
+}
+
+.sparkline-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.sparkline-path {
+  fill: none;
+  stroke: url(#line-gradient);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sparkline-area {
+  fill: url(#area-gradient);
+}
+
+.sparkline-point {
+  fill: #f43f5e;
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 6px #f43f5e);
+  transition: cx 0.3s ease, cy 0.3s ease;
+}
+
+.sparkline-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-subtle);
+  font-size: 0.8125rem;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Accounts Sections (Promoted & Popular - Screenshot 3 Exact Layout)
+   ========================================================================== */
+.accounts-section {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+}
+
+.section-title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.15rem;
+}
+
+.section-title-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.gold-icon {
+  font-size: 0.95rem;
+}
+
+.gold-text {
+  font-family: var(--font-cinzel);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #eab308;
+  text-transform: uppercase;
+}
+
+.section-title-right {
+  font-size: 0.75rem;
+  color: var(--text-subtle);
+  font-family: var(--font-mono);
+}
+
+/* Promoted 2-Card Grid */
+.promoted-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+/* Popular 4-Card Grid */
+.popular-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.85rem;
+}
+
+/* Common Account Card */
+.account-card {
+  background: var(--bg-card-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.15rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+}
+
+.account-card:hover {
+  transform: translateY(-2px);
+  background: #1a202c;
+}
+
+/* Special Promoted Card Borders */
+.border-magenta {
+  border: 1px solid rgba(236, 72, 153, 0.4);
+  box-shadow: inset 0 0 15px rgba(236, 72, 153, 0.05);
+}
+
+.border-magenta:hover {
+  border-color: rgba(236, 72, 153, 0.8);
+  box-shadow: 0 4px 20px rgba(236, 72, 153, 0.2);
+}
+
+.border-amber {
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  box-shadow: inset 0 0 15px rgba(245, 158, 11, 0.05);
+}
+
+.border-amber:hover {
+  border-color: rgba(245, 158, 11, 0.8);
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.2);
+}
+
+/* Account Avatar Ring */
+.account-avatar-ring {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  padding: 2px;
+  background: linear-gradient(135deg, #f43f5e 0%, #ec4899 30%, #8b5cf6 65%, #06b6d4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.65rem;
+}
+
+.account-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #12151c;
+}
+
+.account-name {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.account-handle {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+/* ==========================================================================
+   Info & FAQ Section
+   ========================================================================== */
+.info-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+}
+
+.section-heading {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 1.25rem;
+}
+
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.faq-item {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-card-elevated);
+}
+
+.faq-question {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-main);
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-sans);
+}
+
+.faq-icon {
+  transition: transform 0.2s ease;
+  color: var(--text-muted);
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  display: none;
+  padding: 0 1.25rem 1rem 1.25rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.faq-item.active .faq-answer {
+  display: block;
+}
+
+.faq-answer code {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  color: var(--text-gold-light);
+}
+
+/* Footer */
+.app-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border-subtle);
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  background: var(--bg-app);
+}
+
+.footer-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  font-size: 0.8125rem;
+  color: var(--text-subtle);
+}
+
+.footer-note {
+  margin-top: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.footer-note code {
+  color: var(--text-muted);
+}
+
+/* Animations */
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+  .telemetry-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .popular-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .follower-hero-number {
+    font-size: 4rem;
+  }
+
+  .profile-name {
+    font-size: 1.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .promoted-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .popular-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .follower-hero-number {
+    font-size: 3.25rem;
+  }
+
+  .monitoring-ticker-bar {
+    flex-direction: column;
+    text-align: center;
+  }
+}

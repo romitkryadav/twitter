@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Video Downloader – Download X Videos Online</title>
+    <meta name="description" content="Download Twitter/X videos online for free. Fast, clean, responsive downloader with multiple quality options, direct MP4 downloads, and video preview tools. No signups required.">
+    <meta name="keywords" content="Twitter video downloader, X video downloader, download Twitter videos, download X videos, Twitter video download online, save X video">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://twitter.threadsgrab.com/">
+    <meta property="og:title" content="Twitter Video Downloader – Download X Videos Online">
+    <meta property="og:description" content="Download Twitter/X videos online for free. Fast, clean, responsive downloader with multiple quality options, direct MP4 downloads, and video preview tools.">
+    <meta property="og:image" content="https://twitter.threadsgrab.com/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://twitter.threadsgrab.com/">
+    <meta property="twitter:title" content="Twitter Video Downloader – Download X Videos Online">
+    <meta property="twitter:description" content="Download Twitter/X videos online for free. Fast, clean, responsive downloader with multiple quality options, direct MP4 downloads, and video preview tools.">
+    <meta property="twitter:image" content="https://twitter.threadsgrab.com/og-image.jpg">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://twitter.threadsgrab.com/">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- JSON-LD Structured Data (WebSite, WebApplication, FAQPage) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "X Video Downloader",
+      "url": "https://twitter.threadsgrab.com",
+      "operatingSystem": "All",
+      "applicationCategory": "UtilitiesApplication",
+      "browserRequirements": "Requires HTML5 compatible browser",
+      "description": "A web-based utility tool to download high-quality public videos and GIFs from Twitter/X posts.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div className="container header-container">
+            <div class="logo-group" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+                <div class="logo-box">X</div>
+                <span class="logo-text">Video Downloader</span>
+            </div>
+            <nav class="nav">
+                <a href="#" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">Home</a>
+                <a href="#how-to-download">How to Download</a>
+                <a href="#faqs">FAQs</a>
+            </nav>
+            <div class="header-badge">
+                <span class="badge">v1.2.0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main container">
+        
+        <!-- Hero Search Section -->
+        <section class="hero-section">
+            <div class="promo-tag">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <span>Fast, Free, & Fully Online</span>
+            </div>
+            <h1>Twitter <span class="text-brand">Video Downloader</span></h1>
+            <p class="subtitle">Download Twitter/X videos online for free in high-quality direct MP4 resolutions.</p>
+            
+            <!-- Download Input Form -->
+            <div class="search-box-card">
+                <form id="downloaderForm" class="form-group">
+                    <div class="input-wrapper">
+                        <span class="input-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                        </span>
+                        <input 
+                            type="url" 
+                            id="videoUrl" 
+                            placeholder="Paste Twitter/X video URL here..." 
+                            required
+                        >
+                        <div class="input-actions">
+                            <button type="button" id="clearBtn" class="clear-btn" style="display: none;">×</button>
+                            <button type="button" id="pasteBtn" class="paste-btn">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+                                <span>Paste</span>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit" id="submitBtn" class="submit-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        <span>Download</span>
+                    </button>
+                </form>
+                
+                <div class="quick-try">
+                    <span>Try this example:</span>
+                    <button type="button" onclick="useExample('https://x.com/NASA/status/1679164936499879936')">https://x.com/NASA/status/1679164936499879936</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loader State -->
+        <section id="loaderState" class="loader-state" style="display: none;">
+            <div class="spinner-box">
+                <div class="spinner"></div>
+                <p>Processing Tweet metadata... Please wait.</p>
+            </div>
+        </section>
+
+        <!-- Error Container -->
+        <section id="errorCard" class="error-card" style="display: none;">
+            <div class="error-content">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <div class="error-text">
+                    <h4>Download Failed</h4>
+                    <p id="errorMsg">We couldn't find a downloadable video in this post. Please verify the link is public and contains video.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Result UI -->
+        <section id="resultCard" class="result-card" style="display: none;">
+            <div class="result-card-inner">
+                <!-- Author Header -->
+                <div id="authorHeader" class="author-header">
+                    <img id="authorAvatar" class="author-avatar" src="" alt="User Avatar" referrerpolicy="no-referrer">
+                    <div>
+                        <h4 id="authorName" class="author-name"></h4>
+                        <p id="authorHandle" class="author-handle"></p>
+                    </div>
+                </div>
+
+                <div class="result-grid">
+                    <!-- Preview Panel -->
+                    <div class="preview-panel">
+                        <h3>Video Preview</h3>
+                        <div class="video-wrapper">
+                            <video id="previewPlayer" controls src=""></video>
+                        </div>
+                        <div class="video-meta">
+                            <div class="duration-pill">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                <span id="videoDuration">Duration: N/A</span>
+                            </div>
+                            <div class="source-pill">
+                                <span class="indicator"></span>
+                                <span id="activeQuality">1080p Selected</span>
+                            </div>
+                        </div>
+                        <div id="captionBox" class="caption-box" style="display: none;">
+                            <span class="caption-label">CAPTION</span>
+                            <p id="captionText" class="caption-text"></p>
+                        </div>
+                    </div>
+
+                    <!-- Actions Panel -->
+                    <div class="actions-panel">
+                        <div>
+                            <h3>Available Downloads</h3>
+                            <p class="panel-desc">Select a resolution variant below to preview in the player or download directly.</p>
+                        </div>
+
+                        <!-- Qualities List -->
+                        <div id="qualitiesList" class="qualities-list">
+                            <!-- Injected dynamically by script.js -->
+                        </div>
+
+                        <!-- Mobile Save tips -->
+                        <div class="tip-box">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                            <div class="tip-content">
+                                <strong>💡 Mobile & Browser Save Guide</strong>
+                                <p>If clicking download opens the video in a new tab, tap the three dots in the video controls and select <strong>Download</strong>, or long-press / right-click and choose <strong>Save video as...</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Download Section -->
+        <section id="how-to-download" class="steps-section">
+            <div class="section-header">
+                <h2>How to Download Twitter/X Videos</h2>
+                <p>Follow three simple steps to extract and save public videos onto your devices.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-badge">01</div>
+                    <h3>Copy the Post URL</h3>
+                    <p>Open Twitter/X on a browser or application, click on the share button of the video, and click 'Copy link'.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-badge">02</div>
+                    <h3>Paste the URL</h3>
+                    <p>Navigate back to X Video Downloader and paste the post link into the input field at the top of the page.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-badge">03</div>
+                    <h3>Download the Video</h3>
+                    <p>Click 'Download', review the resolutions extracted by the parser, select your preferred quality, and save the MP4 file.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Grid Section -->
+        <section class="features-section">
+            <div class="section-header">
+                <h2>Core Downloader Features</h2>
+                <p>Providing the most robust online parsing software with clean design boundaries.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon-circle">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
+                    <h3>Fast Processing</h3>
+                    <p>Our server parsing works under milliseconds, bypassing delays to give download variants instantaneously.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-circle">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                    </div>
+                    <h3>No Registration</h3>
+                    <p>Start downloading media right away. We do not require emails, subscriptions, or accounts.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-circle">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    </div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Our layout adapts seamlessly on tablets, iPhones, and Android smartphones, delivering large touch actions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-circle">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3>Free to Use</h3>
+                    <p>Enjoy unthrottled bandwidth speeds and complete catalog access without hidden upgrades or pricing.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-circle">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3>Direct Source URLs</h3>
+                    <p>All extraction pipelines point directly to official Twitter CDN files, preventing malicious third-party middleware.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-circle">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Multiple Qualities</h3>
+                    <p>Provides multiple options including 1080p, 720p, 480p, and 360p, based on how the post was uploaded.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQs Section -->
+        <section id="faqs" class="faq-section">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Read answers to the most common questions regarding Twitter/X video downloads.</p>
+            </div>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        <span>What is X Video Downloader?</span>
+                        <span class="arrow">&#9662;</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>X Video Downloader is a secure, clean, and extremely fast web-based software designed to parse public Twitter/X post links and extract direct download variants of videos and GIFs in MP4 format.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        <span>How do I download a video from Twitter/X?</span>
+                        <span class="arrow">&#9662;</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>To save a video, copy the URL of the public tweet, paste it in the downloader input box on this website, click the 'Download' button, select a quality variant, and save the resulting MP4 directly to your device.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        <span>Can I download videos on mobile devices?</span>
+                        <span class="arrow">&#9662;</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>Yes, X Video Downloader works beautifully on both iOS (Safari) and Android (Chrome or any native browser). See our save guide for tips on saving videos to your gallery.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        <span>Is the Twitter/X Video Downloader free?</span>
+                        <span class="arrow">&#9662;</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>Yes, our tool is 100% free with no hidden charges, subscription fees, download caps, or watermarks.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        <span>Why can't I download a video?</span>
+                        <span class="arrow">&#9662;</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>Downloading will fail if the post is deleted, if the tweet belongs to a private account, if the URL format is incorrect, or if the post only contains plain text, images, or non-native video links.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        <span>Can I download videos from private accounts?</span>
+                        <span class="arrow">&#9662;</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>No, we strictly respect user privacy and copyright rules. Our parser does not have permissions to access or extract media from private profiles or locked accounts.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        <span>Do you store downloaded videos on your servers?</span>
+                        <span class="arrow">&#9662;</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>We do not store, copy, or log files on our servers. The video links provided originate directly from Twitter/X content networks, meaning all downloading happens directly between you and Twitter's media hosting server.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger">
+                        <span>Is it legal to download Twitter/X videos?</span>
+                        <span class="arrow">&#9662;</span>
+                    </button>
+                    <div class="faq-content">
+                        <p>Downloading content is permitted for personal use, offline archiving, and educational analysis. However, you should respect fair use guidelines and avoid copying or redistributing copyrighted work without explicit creator consent.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-meta">
+                <div class="logo-group">
+                    <div class="logo-box">X</div>
+                    <span class="logo-text">X Video Downloader</span>
+                </div>
+                <p class="footer-desc">An independent, lightweight utility tool built for secure offline archiving, educational preservation, and personal video downloads.</p>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#" onclick="showModal('about'); return false;">About</a>
+                <a href="#" onclick="showModal('contact'); return false;">Contact</a>
+                <a href="#" onclick="showModal('privacy'); return false;">Privacy Policy</a>
+                <a href="#" onclick="showModal('terms'); return false;">Terms of Service</a>
+                <a href="#" onclick="showModal('disclaimer'); return false;">Disclaimer</a>
+                <a href="#" onclick="showModal('dmca'); return false;">DMCA</a>
+            </div>
+        </div>
+        
+        <div class="container footer-copyright">
+            <p class="footer-disclaimer"><strong>Disclaimer:</strong> This website is an independent third-party tool and is not affiliated with, endorsed by, or sponsored by X Corp. or Twitter. All copyrights, brand logos, and media files remain the property of their respective owners.</p>
+            <p class="copyright-text">&copy; 2026 X Video Downloader. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Universal Static Modals System -->
+    <div id="modalOverlay" class="modal-overlay" style="display: none;">
+        <div class="modal-card">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modalContent"></div>
+            <div class="modal-footer">
+                <button class="btn-close" onclick="closeModal()">Close Panel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript File -->
+    <script src="/script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>X (Twitter) Image Downloader – Download Images from X Posts</title>
+  <meta name="description" content="Download images from public X (Twitter) posts in the highest available quality. Paste a tweet URL, preview all images, and download them instantly." />
+  <meta name="keywords" content="twitter image downloader, x image downloader, download twitter images, download x images, twitter photo downloader, x photo downloader, twitter post image downloader, x tweet image downloader, download images from x, download images from twitter" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://twitter.threadsgrab.com" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://twitter.threadsgrab.com" />
+  <meta property="og:title" content="X (Twitter) Image Downloader – Download Images from X Posts" />
+  <meta property="og:description" content="Download images from public X (Twitter) posts in the highest available quality. Paste a tweet URL, preview all images, and download them instantly." />
+  <meta property="og:image" content="https://pbs.twimg.com/profile_images/1683899100922511360/yRsRRjGO_400x400.jpg" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="X (Twitter) Image Downloader – Download Images from X Posts" />
+  <meta name="twitter:description" content="Download images from public X (Twitter) posts in the highest available quality. Paste a tweet URL, preview all images, and download them instantly." />
+
+  <!-- JSON-LD Structured Data: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "X (Twitter) Image Downloader",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "All",
+    "description": "High-performance tool to preview and download original resolution images from public X (Twitter) posts using Cloudflare Worker.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <!-- JSON-LD Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is an X image downloader?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An X image downloader is a web utility that inspects public X (formerly Twitter) posts, extracts the media image URLs, and retrieves the highest publicly available resolution directly for the user."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I download multiple images from one tweet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. If a tweet contains 1, 2, 3, or 4 images, this tool extracts all of them. You can download individual pictures or use the 'Download All' feature to download all images sequentially."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I download images from private tweets?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This tool operates strictly on publicly accessible X posts. It does not bypass logins, authentication, CAPTCHA, or privacy settings."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool reduce image quality?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The Cloudflare Worker automatically requests the highest original quality parameter (name=orig) exposed on X CDN servers without compression or artificial upscaling."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the X image downloader free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, this tool is 100% free and open-source, built using only Cloudflare Worker serverless edge functions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this tool store downloaded images?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The Cloudflare Worker streams images directly between the public CDN and your browser. No images, databases, or user logs are permanently stored."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="/imgstyle.css" />
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="site-header" id="site-header">
+    <div class="header-container">
+      <a href="/" class="brand" id="brand-logo">
+        <div class="brand-icon">𝕏</div>
+        <span>X Image Downloader</span>
+      </a>
+      <div class="nav-actions">
+        <a href="https://ximage.romitkr3018.workers.dev/health" target="_blank" rel="noopener noreferrer" class="btn-nav-action worker-status-pill" id="worker-status-badge" title="Live Cloudflare Worker endpoint">
+          <span class="status-dot-pulse"></span>
+          <span>Worker: ximage.romitkr3018.workers.dev</span>
+        </a>
+        <button type="button" class="btn-nav-action" id="open-docs-btn" title="Cloudflare Worker Deployment Docs">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          Worker Guide
+        </button>
+        <button type="button" class="btn-nav-action" id="theme-toggle-btn" title="Toggle Theme">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          Theme
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper -->
+  <main class="main-wrapper" id="main-content">
+    
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero-section">
+      <div class="hero-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        Cloudflare Worker • Edge Architecture • Zero API Keys
+      </div>
+      <h1 class="hero-title" id="hero-heading">Download Images from X (Twitter)</h1>
+      <p class="hero-description" id="hero-desc">
+        Paste a public X or Twitter post URL and download all publicly available images in the highest available quality.
+      </p>
+    </section>
+
+    <!-- Downloader Input Form -->
+    <section class="form-card" id="downloader-card">
+      <form id="downloader-form" autocomplete="off">
+        <div class="input-group">
+          <div class="input-field-wrapper">
+            <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            <input 
+              type="text" 
+              id="tweet-url-input" 
+              class="url-input" 
+              placeholder="Paste X or Twitter Post URL" 
+              aria-label="X or Twitter Post URL"
+              required
+            />
+            <button type="button" class="btn-clear-input" id="clear-input-btn" title="Clear input">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          <button type="submit" class="btn-submit" id="submit-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Images
+          </button>
+        </div>
+
+        <div class="sample-pills">
+          <span>Try sample post:</span>
+          <button type="button" class="sample-pill-btn" data-url="https://x.com/TheEllenShow/status/440322224407314432">Oscars Selfie (Photo)</button>
+          <button type="button" class="sample-pill-btn" data-url="https://x.com/jack/status/20">Jack's First Tweet (Text)</button>
+          <button type="button" class="sample-pill-btn" data-url="https://x.com/NASA/status/1780287109230538965">NASA Space Update</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Status Alert Container -->
+    <div class="status-container" id="status-container">
+      <div class="status-alert" id="status-alert"></div>
+    </div>
+
+    <!-- Loading Skeletons -->
+    <div class="loading-state" id="loading-state">
+      <div class="loading-header">
+        <div class="spinner"></div>
+        <span>Finding images from public post...</span>
+      </div>
+      <div class="skeleton-grid">
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      </div>
+    </div>
+
+    <!-- Result Card -->
+    <section class="results-section" id="results-section">
+      <div class="result-card">
+        <!-- Tweet Meta Header -->
+        <div class="tweet-header-card">
+          <div class="tweet-author-info">
+            <img src="" alt="Author Avatar" class="author-avatar" id="res-author-avatar" />
+            <div class="author-meta">
+              <span class="author-display-name" id="res-author-name">Tweet Author</span>
+              <span class="author-username" id="res-author-username">@username</span>
+            </div>
+          </div>
+          <div class="results-badge-bar">
+            <span class="image-count-badge" id="res-image-count">4 Images Found</span>
+          </div>
+        </div>
+
+        <!-- Tweet Body Text -->
+        <p class="tweet-text-content" id="res-tweet-text"></p>
+
+        <!-- Grid of Extracted Media Images -->
+        <div class="images-grid" id="images-grid">
+          <!-- Dynamically populated image cards -->
+        </div>
+
+        <!-- Bulk Sequential Download Bar -->
+        <div class="bulk-actions-bar">
+          <div class="bulk-meta-text" id="bulk-meta-text">Download all high-resolution images sequentially</div>
+          <button type="button" class="btn-download-all" id="download-all-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download All
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Informational Content Sections for SEO & User Guidance -->
+    <div class="content-wrapper" id="content-guide">
+      <h2 class="section-title">Everything You Need to Know</h2>
+
+      <div class="content-grid">
+        <article class="info-card">
+          <div class="info-card-icon">⚡</div>
+          <h3 class="info-card-title">What is an X Image Downloader?</h3>
+          <p class="info-card-text">
+            An X Image Downloader is a high-speed utility engineered to retrieve and inspect public X (Twitter) posts, locate the highest publicly exposed picture files on the CDN, and present them for immediate full-quality preview and download.
+          </p>
+        </article>
+
+        <article class="info-card">
+          <div class="info-card-icon">🎯</div>
+          <h3 class="info-card-title">Highest Original Quality</h3>
+          <p class="info-card-text">
+            When users upload images to X, the platform generates multiple size variants. This tool automatically requests the highest original quality format (<code style="color:var(--accent-color);">name=orig</code> / 4096px) without compression or artificial upscaling.
+          </p>
+        </article>
+
+        <article class="info-card">
+          <div class="info-card-icon">🛡️</div>
+          <h3 class="info-card-title">Can I Download from Private Tweets?</h3>
+          <p class="info-card-text">
+            No. This tool strictly respects security and privacy boundaries. It only functions with <strong>publicly accessible X posts</strong>. It does not bypass login forms, access controls, private accounts, or CAPTCHA.
+          </p>
+        </article>
+      </div>
+
+      <!-- How It Works Steps -->
+      <article class="info-card" style="margin-bottom: 40px;">
+        <h3 class="info-card-title">How to Download Images from X (Twitter)</h3>
+        <div class="steps-container">
+          <div class="step-item">
+            <span class="step-number">1</span>
+            <span><strong>Copy Tweet Link:</strong> Navigate to the public X (Twitter) post and copy the URL from your browser or share menu.</span>
+          </div>
+          <div class="step-item">
+            <span class="step-number">2</span>
+            <span><strong>Paste into Tool:</strong> Paste the URL into the input field above (e.g. <code style="color:var(--accent-color);">https://x.com/username/status/123456789</code>).</span>
+          </div>
+          <div class="step-item">
+            <span class="step-number">3</span>
+            <span><strong>Click Download Images:</strong> The Cloudflare Worker edge backend fetches and parses public post metadata.</span>
+          </div>
+          <div class="step-item">
+            <span class="step-number">4</span>
+            <span><strong>Preview Every Photo:</strong> Inspect image dimensions, formats (JPEG/PNG/WebP), and zoom in with the lightbox.</span>
+          </div>
+          <div class="step-item">
+            <span class="step-number">5</span>
+            <span><strong>Download Individual or All:</strong> Download single images or click <strong>Download All</strong> to save every picture sequentially.</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- FAQ Section -->
+      <section class="faq-section" id="faq-section">
+        <h2 class="section-title">Frequently Asked Questions (FAQ)</h2>
+        <div class="faq-list">
+
+          <div class="faq-item open">
+            <button type="button" class="faq-question-btn">
+              <span>What is an X image downloader?</span>
+              <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              An X image downloader is a web utility that inspects public X (formerly Twitter) posts, extracts the media image URLs, and retrieves the highest publicly available resolution directly for the user.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question-btn">
+              <span>Can I download multiple images from one tweet?</span>
+              <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              Yes. If a tweet contains 1, 2, 3, or 4 images, this tool extracts all of them. You can download individual pictures or use the 'Download All' feature to download all images sequentially.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question-btn">
+              <span>Can I download images from private tweets?</span>
+              <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              No. This tool operates strictly on publicly accessible X posts. It does not bypass logins, authentication, CAPTCHA, or privacy settings.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question-btn">
+              <span>Does this tool reduce image quality?</span>
+              <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              No. The Cloudflare Worker automatically requests the highest original quality parameter (<code style="color:var(--accent-color);">name=orig</code>) exposed on X CDN servers without compression or artificial upscaling.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question-btn">
+              <span>Is the X image downloader free?</span>
+              <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              Yes, this tool is 100% free and open-source, built using only Cloudflare Worker serverless edge functions.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button type="button" class="faq-question-btn">
+              <span>Does this tool store downloaded images?</span>
+              <svg class="faq-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer">
+              No. The Cloudflare Worker streams images directly between the public CDN and your browser. No images, databases, or user logs are permanently stored.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Cloudflare Worker Architecture & Deployment Modal -->
+  <div class="modal-overlay" id="docs-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title">Cloudflare Worker Architecture & Deployment Guide</h2>
+        <button type="button" class="btn-close-modal" id="close-docs-btn" title="Close modal">✕</button>
+      </div>
+      <div class="modal-body">
+        
+        <div class="doc-block">
+          <h3>1. System Architecture Overview</h3>
+          <p>The application relies solely on HTML, CSS, Vanilla JavaScript, and a serverless Cloudflare Worker. No X API keys, database, or rate-limiting dependencies are required.</p>
+          <div class="code-snippet">User Browser (HTML + CSS + Vanilla JS)
+       ↓  GET /api/x-images?url=&lt;TWEET_URL&gt;
+Cloudflare Worker Edge Handler (worker.js)
+       ↓  Public Syndication / Metadata Fetch
+Public X (Twitter) CDN &lt;pbs.twimg.com&gt;
+       ↓  Extract Highest Quality (name=orig)
+JSON Response to Frontend Preview
+       ↓  GET /api/x-image-download?url=&lt;IMAGE_URL&gt;
+Safe Streaming Streamed Direct Download</div>
+        </div>
+
+        <div class="doc-block">
+          <h3>2. Cloudflare Worker Deployment Instructions</h3>
+          <p>Deploying <code style="color:var(--accent-color);">worker.js</code> using Wrangler CLI:</p>
+          <div class="code-snippet"># 1. Install Wrangler
+npm install -g wrangler
+
+# 2. Login to your Cloudflare account
+wrangler login
+
+# 3. Deploy the worker directly
+wrangler deploy worker.js --name x-image-downloader</div>
+          <p>Alternatively, in the <strong>Cloudflare Dashboard</strong>:</p>
+          <ul>
+            <li>Navigate to <em>Workers & Pages</em> &gt; <em>Create Application</em> &gt; <em>Create Worker</em>.</li>
+            <li>Paste the contents of <code style="color:var(--accent-color);">worker.js</code> into the editor.</li>
+            <li>Click <strong>Save and Deploy</strong>.</li>
+          </ul>
+        </div>
+
+        <div class="doc-block">
+          <h3>3. Cloudflare Pages Deployment Instructions</h3>
+          <p>To deploy the frontend (<code style="color:var(--accent-color);">index.html</code>, <code style="color:var(--accent-color);">style.css</code>, <code style="color:var(--accent-color);">script.js</code>):</p>
+          <ul>
+            <li>In the Cloudflare Dashboard, go to <em>Workers & Pages</em> &gt; <em>Create</em> &gt; <em>Pages</em>.</li>
+            <li>Connect your Git repository or use <strong>Direct Upload</strong> to drag-and-drop the files.</li>
+            <li>Set output directory to <code style="color:var(--accent-color);">.</code> (root).</li>
+          </ul>
+        </div>
+
+        <div class="doc-block">
+          <h3>4. Worker Route & CORS Configuration</h3>
+          <p>Bind your Worker to your custom domain or Pages project in <code style="color:var(--accent-color);">wrangler.jsonc</code>:</p>
+          <div class="code-snippet">{
+  "name": "x-image-downloader",
+  "main": "worker.js",
+  "compatibility_date": "2024-04-01",
+  "routes": [
+    { "pattern": "twitter.threadsgrab.com/api/*", "zone_name": "twitter.threadsgrab.com" }
+  ]
+}</div>
+          <p>The worker returns standard permissive CORS headers (<code style="color:var(--accent-color);">Access-Control-Allow-Origin: *</code>) to enable requests from your frontend.</p>
+        </div>
+
+        <div class="doc-block">
+          <h3>5. Testing Instructions (Live Worker)</h3>
+          <p>Test the live endpoints via <code style="color:var(--accent-color);">curl</code>:</p>
+          <div class="code-snippet"># Test Live Worker Health Check
+curl "https://ximage.romitkr3018.workers.dev/health"
+
+# Test Image Extraction
+curl "https://ximage.romitkr3018.workers.dev/api/x-images?url=https://x.com/TheEllenShow/status/440322224407314432"
+
+# Test Streaming Image Download
+curl -I "https://ximage.romitkr3018.workers.dev/api/x-image-download?url=https://pbs.twimg.com/media/BhxWutnCEAAtEQ6?format=jpg&name=orig"</div>
+        </div>
+
+        <div class="doc-block">
+          <h3>6. Security & SSRF Protection</h3>
+          <p>The worker implements rigorous security controls:</p>
+          <ul>
+            <li><strong>Strict Domain Allowlist:</strong> Only permits target URLs from <code style="color:var(--accent-color);">x.com</code> and <code style="color:var(--accent-color);">twitter.com</code>.</li>
+            <li><strong>CDN Whitelist:</strong> Image downloads are strictly restricted to <code style="color:var(--accent-color);">pbs.twimg.com</code> and <code style="color:var(--accent-color);">ton.twitter.com</code>.</li>
+            <li><strong>Anti-SSRF:</strong> Rejects local IP ranges (127.0.0.1, 10.x.x.x, 192.168.x.x), non-HTTPS schemes, and non-whitelisted destinations.</li>
+            <li><strong>Safe Stream Buffer:</strong> Streams responses without buffering entire multi-megabyte payloads in Worker memory.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Fullscreen Lightbox Modal -->
+  <div class="lightbox-overlay" id="lightbox-overlay" role="dialog" aria-modal="true">
+    <button type="button" class="lightbox-close-btn" id="lightbox-close-btn" title="Close Preview">✕</button>
+    <div class="lightbox-content">
+      <img src="" alt="Full Preview" class="lightbox-img" id="lightbox-img" />
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p>X (Twitter) Image Downloader • High-Performance Cloudflare Worker Architecture</p>
+      <div class="footer-links">
+        <a href="#hero-section" class="footer-link">Top</a>
+        <a href="#content-guide" class="footer-link">Guide</a>
+        <a href="#faq-section" class="footer-link">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/imgscript.js"></script>
+</body>
+</html>

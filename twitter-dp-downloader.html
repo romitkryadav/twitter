@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary SEO Metadata -->
+    <title>X (Twitter) DP Downloader – Download Profile Picture</title>
+    <meta name="title" content="X (Twitter) DP Downloader – Download Profile Picture" />
+    <meta name="description" content="Download a public X (Twitter) profile picture in the highest available quality. Enter a username or profile URL, preview the DP, and download it instantly." />
+    <meta name="keywords" content="twitter dp downloader, twitter profile picture downloader, x dp downloader, x profile picture downloader, download twitter profile picture, download x profile picture, twitter profile photo downloader, x profile photo downloader, twitter dp download, x dp download" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="X DP Downloader" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="X (Twitter) DP Downloader – Download Profile Picture" />
+    <meta property="og:description" content="Download a public X (Twitter) profile picture in the highest available quality. Enter a username or profile URL, preview the DP, and download it instantly." />
+    <meta property="og:site_name" content="X DP Downloader" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="X (Twitter) DP Downloader – Download Profile Picture" />
+    <meta name="twitter:description" content="Download a public X (Twitter) profile picture in the highest available quality. Enter a username or profile URL, preview the DP, and download it instantly." />
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/dpstyle.css" />
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "X (Twitter) DP Downloader",
+          "applicationCategory": "MultimediaApplication",
+          "operatingSystem": "All",
+          "browserRequirements": "Requires JavaScript. Requires HTML5.",
+          "description": "Download a public X (Twitter) profile picture in the highest available quality with zero API keys.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is an X DP downloader?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "An X DP downloader is a tool that retrieves publicly accessible profile picture data from any public X (formerly Twitter) profile and allows you to preview and download the highest available resolution version."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I download an X profile picture?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Simply copy the public X profile URL or username, paste it into the search field, click 'Get Profile Picture', preview the avatar, and click 'Download HD'."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I download a private X profile picture?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. This tool strictly processes publicly accessible metadata and respects privacy boundaries. It does not bypass authentication, private account restrictions, or CAPTCHA."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does the downloader reduce image quality?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. The Worker extracts the highest legitimate publicly available resolution (such as 400x400 uncompressed avatars) without downscaling or artificial upscaling."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is the X DP downloader free?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, it is 100% free and open-source, requiring no user registration, no API keys, and no subscriptions."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does the tool store profile pictures?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. The tool uses a stateless Cloudflare Worker architecture. No profile pictures or user histories are saved in databases, KV, or storage buckets."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I download a profile picture from a Twitter URL?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. The tool supports standard X URLs (x.com/username), legacy Twitter URLs (twitter.com/username), and handle formats (@username)."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Top Navigation Header -->
+    <header class="site-header" id="siteHeader">
+      <div class="container nav-wrap" id="navWrap">
+        <a href="/" class="brand-logo" id="brandLogo">
+          <div class="brand-icon" id="brandIcon">𝕏</div>
+          <span>DP Downloader</span>
+        </a>
+
+        <div class="nav-actions" id="navActions">
+          <a href="#howTo" class="nav-link" id="navHowTo">How It Works</a>
+          <a href="#faq" class="nav-link" id="navFaq">FAQ</a>
+          <a href="#cloudflareDocs" class="nav-link" id="navDocs">Cloudflare Worker</a>
+          <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle dark/light mode">
+            <span id="themeIcon">☀️</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-content" id="mainContent">
+      <div class="container">
+        
+        <!-- Hero Section -->
+        <section class="hero-section" id="heroSection">
+          <div class="badge-pill" id="badgePill">
+            <span>⚡ Powered Exclusively by Cloudflare Worker</span>
+          </div>
+          <h1 class="hero-title" id="heroTitle">Download X (Twitter) Profile Picture</h1>
+          <p class="hero-desc" id="heroDesc">
+            Enter a public X username or profile URL to view and download its publicly available profile picture in the highest resolution.
+          </p>
+        </section>
+
+        <!-- Downloader Tool Card -->
+        <section class="tool-card" id="toolCard">
+          <form class="downloader-form" id="downloaderForm">
+            <div class="input-wrapper" id="inputWrapper">
+              <span class="input-icon" id="inputIcon">@</span>
+              <input
+                type="text"
+                class="url-input"
+                id="usernameInput"
+                placeholder="Enter X Username or Profile URL"
+                autocomplete="off"
+                spellcheck="false"
+                required
+              />
+              <div class="input-actions" id="inputActions">
+                <button type="button" class="btn-paste" id="pasteBtn" title="Paste from clipboard">
+                  Paste
+                </button>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary" id="submitBtn">
+              <span>Get Profile Picture</span>
+            </button>
+          </form>
+
+          <!-- Quick Example Chips -->
+          <div class="quick-examples" id="quickExamples">
+            <span class="examples-label">Try examples:</span>
+            <button type="button" class="example-chip" data-user="elonmusk">@elonmusk</button>
+            <button type="button" class="example-chip" data-user="nasa">@nasa</button>
+            <button type="button" class="example-chip" data-user="BillGates">@BillGates</button>
+            <button type="button" class="example-chip" data-user="vercel">@vercel</button>
+          </div>
+        </section>
+
+        <!-- Loading Indicator -->
+        <div class="loading-box" id="loadingBox">
+          <div class="spinner" id="loadingSpinner"></div>
+          <div class="loading-text" id="loadingText">Finding profile picture...</div>
+          <div class="loading-subtext" id="loadingSubtext">Connecting via Cloudflare Worker & extracting high-res assets</div>
+        </div>
+
+        <!-- Alert / Error Message Box -->
+        <div class="alert-box" id="alertBox" role="alert">
+          <span class="alert-icon" id="alertIcon">⚠️</span>
+          <div class="alert-message" id="alertMessage">Please enter a valid X username.</div>
+        </div>
+
+        <!-- Result Card -->
+        <article class="result-card" id="resultCard">
+          <div class="avatar-preview-container" id="avatarPreviewContainer">
+            <img src="" alt="X Profile Picture" class="avatar-image" id="avatarImg" referrerpolicy="no-referrer" />
+            <span class="quality-badge" id="qualityBadge">HD</span>
+          </div>
+
+          <h2 class="profile-display-name" id="displayName">Name</h2>
+          <div class="profile-username" id="username">@username</div>
+
+          <div>
+            <span class="status-badge" id="statusBadge">
+              <span>✓</span> Profile Picture Found
+            </span>
+          </div>
+
+          <!-- Metadata Grid -->
+          <div class="meta-grid" id="metaGrid">
+            <div class="meta-item">
+              <span class="meta-label">Dimensions</span>
+              <span class="meta-val" id="dimensionVal">400 × 400</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Format</span>
+              <span class="meta-val" id="formatVal">JPEG</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Type</span>
+              <span class="meta-val" id="statusVal">Public DP</span>
+            </div>
+          </div>
+
+          <!-- Download / Open Action Buttons -->
+          <div class="action-buttons" id="actionButtons">
+            <a href="#" class="btn-action-download" id="downloadBtn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Download HD</span>
+            </a>
+            <a href="#" class="btn-action-open" id="openImageBtn" target="_blank" rel="noopener noreferrer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+              <span>Open Full Image</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Information & Content Sections -->
+        <section class="info-section" id="infoSection">
+          <h2 class="section-heading">What Is an X DP Downloader?</h2>
+          <p class="content-paragraph">
+            An X (Twitter) DP Downloader is a high-performance utility designed to retrieve and download publicly accessible profile pictures (Display Pictures) from X profiles. By reading legitimate public metadata and Open Graph declarations, the tool locates the highest resolution image version hosted on approved content delivery networks and provides safe, full-quality downloads directly to your device.
+          </p>
+
+          <h2 class="section-heading" id="howTo">How to Download an X Profile Picture</h2>
+          <ol class="steps-list" id="stepsList">
+            <li class="step-item">
+              <div class="step-num">1</div>
+              <div class="step-text"><strong>Copy the public X profile URL</strong> or note the target account handle (for instance, <code>https://x.com/elonmusk</code> or <code>@elonmusk</code>).</div>
+            </li>
+            <li class="step-item">
+              <div class="step-num">2</div>
+              <div class="step-text"><strong>Paste it into the tool</strong> search bar above. You can also use the convenient "Paste" button.</div>
+            </li>
+            <li class="step-item">
+              <div class="step-num">3</div>
+              <div class="step-text"><strong>Click "Get Profile Picture"</strong> to initiate the Cloudflare Worker extraction process.</div>
+            </li>
+            <li class="step-item">
+              <div class="step-num">4</div>
+              <div class="step-text"><strong>Preview the profile picture</strong> in the result card along with verified display name, username, and image dimensions.</div>
+            </li>
+            <li class="step-item">
+              <div class="step-num">5</div>
+              <div class="step-text"><strong>Click "Download HD"</strong> to save the full-resolution image with proper filename and image headers.</div>
+            </li>
+          </ol>
+
+          <h2 class="section-heading">Can I Download a Private Account's Profile Picture?</h2>
+          <p class="content-paragraph">
+            No. This tool operates strictly on publicly accessible web data and complies with privacy protocols. It does not bypass account privacy settings, login walls, CAPTCHAs, or authentication mechanisms. If an account is suspended, deleted, or restricted, the tool safely reports that the profile picture is not publicly available.
+          </p>
+
+          <h2 class="section-heading">What Quality Will I Get?</h2>
+          <p class="content-paragraph">
+            The downloader delivers the highest legitimate publicly available version hosted on X’s content distribution network (typically 400 × 400 pixels uncompressed or original uploaded format). The application never applies artificial neural upscaling or fake resolution enhancements, ensuring you receive the authentic, uncorrupted profile photo.
+          </p>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="info-section" id="faq">
+          <h2 class="section-heading">Frequently Asked Questions</h2>
+          <div class="faq-grid" id="faqGrid">
+            
+            <details class="faq-item" id="faq1" open>
+              <summary class="faq-summary">What is an X DP downloader?</summary>
+              <div class="faq-body">
+                An X DP downloader is a lightweight web tool that allows you to inspect and download the public display picture (avatar) of any public X (Twitter) profile in high resolution without requiring an X account or API keys.
+              </div>
+            </details>
+
+            <details class="faq-item" id="faq2">
+              <summary class="faq-summary">How do I download an X profile picture?</summary>
+              <div class="faq-body">
+                Enter any valid username (e.g. <code>@username</code>) or profile link (e.g. <code>https://x.com/username</code>), click "Get Profile Picture", and once the preview appears, click the "Download HD" button to save it locally.
+              </div>
+            </details>
+
+            <details class="faq-item" id="faq3">
+              <summary class="faq-summary">Can I download a private X profile picture?</summary>
+              <div class="faq-body">
+                No. Private profiles, locked accounts, and accounts that require login authentication cannot be viewed or downloaded. The tool respects all privacy restrictions.
+              </div>
+            </details>
+
+            <details class="faq-item" id="faq4">
+              <summary class="faq-summary">Does the downloader reduce image quality?</summary>
+              <div class="faq-body">
+                No. The worker fetches the full resolution version directly from approved X CDN servers (<code>pbs.twimg.com</code>) without compression or downsampling.
+              </div>
+            </details>
+
+            <details class="faq-item" id="faq5">
+              <summary class="faq-summary">Is the X DP downloader free?</summary>
+              <div class="faq-body">
+                Yes. The tool is 100% free with no hidden fees, subscriptions, or login requirements.
+              </div>
+            </details>
+
+            <details class="faq-item" id="faq6">
+              <summary class="faq-summary">Does the tool store profile pictures?</summary>
+              <div class="faq-body">
+                No. The tool is completely stateless. It streams data on-demand and does not store images, usernames, or search history in any database or disk storage.
+              </div>
+            </details>
+
+            <details class="faq-item" id="faq7">
+              <summary class="faq-summary">Can I download a profile picture from a Twitter URL?</summary>
+              <div class="faq-body">
+                Yes. The tool accepts both new <code>x.com</code> URLs and legacy <code>twitter.com</code> URLs seamlessly.
+              </div>
+            </details>
+
+          </div>
+        </section>
+
+        <!-- Cloudflare Worker Architecture & Deployment Guide -->
+        <section class="info-section" id="cloudflareDocs">
+          <h2 class="section-heading">Cloudflare Worker Architecture & Deployment Guide</h2>
+          <p class="content-paragraph">
+            This project is engineered to run as a 100% serverless microservice on Cloudflare Workers and Cloudflare Pages with zero external dependencies, zero Node.js server dependencies, and zero database overhead.
+          </p>
+
+          <div class="dev-guide-card" id="devGuideCard">
+            <!-- Tabs -->
+            <div class="tabs-header" id="tabsHeader">
+              <button class="tab-btn active" data-tab="tabWorkerDeploy">1. Worker Deployment</button>
+              <button class="tab-btn" data-tab="tabPagesDeploy">2. Pages Frontend</button>
+              <button class="tab-btn" data-tab="tabApiRoutes">3. API Endpoints</button>
+              <button class="tab-btn" data-tab="tabSecurity">4. SSRF & Security</button>
+              <button class="tab-btn" data-tab="tabWorkerCode">5. worker.js Code</button>
+            </div>
+
+            <!-- Tab 1: Worker Deployment -->
+            <div class="tab-pane active" id="tabWorkerDeploy">
+              <h3 class="sub-heading">Deploying to Cloudflare Workers</h3>
+              <p class="content-paragraph">
+                Deploy the backend worker using Cloudflare Wrangler CLI in seconds:
+              </p>
+              <div class="code-block-wrapper">
+                <button class="copy-code-btn" data-target="codeWrangler">Copy</button>
+                <pre class="code-block" id="codeWrangler"><code># 1. Install Wrangler CLI
+npm install -g wrangler
+
+# 2. Login to your Cloudflare account
+wrangler login
+
+# 3. Create wrangler.toml configuration
+cat &lt;&lt;'EOF' &gt; wrangler.toml
+name = "x-dp-worker"
+main = "worker.js"
+compatibility_date = "2024-04-01"
+
+[routes]
+pattern = "api.twitter.threadsgrab.com/*"
+EOF
+
+# 4. Deploy to Cloudflare's global edge network
+wrangler deploy</code></pre>
+              </div>
+            </div>
+
+            <!-- Tab 2: Pages Frontend -->
+            <div class="tab-pane" id="tabPagesDeploy">
+              <h3 class="sub-heading">Deploying Static Frontend to Cloudflare Pages</h3>
+              <p class="content-paragraph">
+                Deploy the pure HTML, CSS, and Vanilla JavaScript frontend to Cloudflare Pages:
+              </p>
+              <div class="code-block-wrapper">
+                <button class="copy-code-btn" data-target="codePages">Copy</button>
+                <pre class="code-block" id="codePages"><code># Option A: Direct Git integration via Cloudflare Dashboard
+# Connect your GitHub repository to Cloudflare Pages with build directory set to root "./"
+
+# Option B: Direct CLI deployment
+npx wrangler pages deploy . --project-name=x-dp-downloader</code></pre>
+              </div>
+            </div>
+
+            <!-- Tab 3: API Endpoints -->
+            <div class="tab-pane" id="tabApiRoutes">
+              <h3 class="sub-heading">API Routes Specification</h3>
+              <p class="content-paragraph">
+                The Worker provides two primary high-performance endpoints:
+              </p>
+              <div class="code-block-wrapper">
+                <button class="copy-code-btn" data-target="codeApi">Copy</button>
+                <pre class="code-block" id="codeApi"><code># 1. Fetch Profile Data & Image Info
+GET https://xdp.romitkr3018.workers.dev/api/x-dp?username=elonmusk
+GET https://xdp.romitkr3018.workers.dev/api/x-dp?url=https://x.com/elonmusk
+
+# Response Format:
+{
+  "success": true,
+  "platform": "x",
+  "profile": {
+    "username": "elonmusk",
+    "name": "Elon Musk",
+    "profileImage": "https://pbs.twimg.com/profile_images/2053244804520427520/m8mdWZCG_400x400.jpg"
+  },
+  "image": {
+    "url": "https://pbs.twimg.com/profile_images/2053244804520427520/m8mdWZCG_400x400.jpg",
+    "width": 400,
+    "height": 400,
+    "type": "image/jpeg"
+  },
+  "updatedAt": "2026-08-26T15:46:39.758Z"
+}
+
+# 2. Secure Streaming Image Download
+GET https://xdp.romitkr3018.workers.dev/api/x-dp-download?url=https://pbs.twimg.com/...&username=elonmusk
+# Returns streamed image with Content-Disposition: attachment; filename="x-dp-elonmusk.jpg"</code></pre>
+              </div>
+            </div>
+
+            <!-- Tab 4: SSRF & Security -->
+            <div class="tab-pane" id="tabSecurity">
+              <h3 class="sub-heading">Security Hardening & SSRF Protection</h3>
+              <p class="content-paragraph">
+                To prevent misuse as an arbitrary proxy, the Worker implements multi-layered security:
+              </p>
+              <ul style="padding-left: 20px; color: var(--text-secondary); line-height: 1.7;">
+                <li><strong>Strict Hostname Allowlists:</strong> Only <code>x.com</code>, <code>twitter.com</code>, and approved CDN hosts (<code>pbs.twimg.com</code>, <code>abs.twimg.com</code>) are permitted.</li>
+                <li><strong>SSRF Prevention:</strong> Direct rejection of IPv4/IPv6 literals, loopbacks (<code>127.0.0.1</code>), private subnets (<code>10.0.0.0/8</code>, <code>172.16.0.0/12</code>, <code>192.168.0.0/16</code>), and non-HTTPS protocols.</li>
+                <li><strong>Memory Safety:</strong> Images are streamed directly without loading entire payloads into Worker heap memory.</li>
+                <li><strong>Safe Headers:</strong> Sanitized <code>Content-Disposition</code> filenames to eliminate directory traversal attacks.</li>
+              </ul>
+            </div>
+
+            <!-- Tab 5: worker.js Code -->
+            <div class="tab-pane" id="tabWorkerCode">
+              <h3 class="sub-heading">Cloudflare Worker Source Code</h3>
+              <div class="code-block-wrapper">
+                <button class="copy-code-btn" data-target="codeSource">Copy</button>
+                <pre class="code-block" id="codeSource"><code>// See complete /worker.js file included in the root directory.
+// Pure ES module export:
+export default {
+  async fetch(request, env, ctx) {
+    // Routes: /api/x-dp & /api/x-dp-download
+    // Implements validation, OpenGraph parsing, and safe streaming
+  }
+};</code></pre>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" id="siteFooter">
+      <div class="container footer-content">
+        <div>
+          <strong>X (Twitter) DP Downloader</strong> &bull; Serverless Edition
+          <div style="font-size: 0.78rem; margin-top: 4px;">Powered exclusively by Cloudflare Worker</div>
+        </div>
+        <div class="footer-disclaimer">
+          Disclaimer: This application is an independent utility and is not affiliated with, sponsored by, or endorsed by X Corp. or Twitter. All trademarks and media remain the property of their respective owners.
+        </div>
+      </div>
+    </footer>
+
+    <!-- Client Script -->
+    <script src="/dpscript.js"></script>
+  </body>
+</html>

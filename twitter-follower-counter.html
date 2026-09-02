@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary SEO Metadata -->
+    <title>X (Twitter) Live Follower Counter – Real-Time Follower Tracker</title>
+    <meta name="description" content="Live-track any X (Twitter) profile follower count in real time with 5-second live edge sync. Pure HTML, CSS, JavaScript powered by Cloudflare Workers." />
+    <meta name="keywords" content="x live follower counter, twitter live follower counter, x follower tracker, live twitter follower count, x live follower count, twitter live tracker" />
+    <meta name="author" content="Romit Kr Yadav" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Google Fonts for High-End Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Pure CSS Stylesheet -->
+    <link rel="stylesheet" href="/xfollower.css" />
+
+    <!-- Structured Data: WebApplication & FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "X Live Follower Counter",
+          "applicationCategory": "SocialMediaApplication",
+          "operatingSystem": "All",
+          "description": "Live-track any X (Twitter) profile follower count in real-time with 5-second live edge sync."
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How does this X Live Follower Counter work?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The tool connects to a high-speed Cloudflare Worker edge service that safely parses publicly exposed X profile metadata and streams live verified follower counts every 5 seconds."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is the follower count real-time?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, updates poll every 5.0 seconds from Cloudflare edge servers without generating synthetic or estimated filler numbers."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Top Navigation Header -->
+    <header class="app-header">
+      <div class="header-inner">
+        <a href="#" class="brand" id="brand-link">
+          <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+          </svg>
+          <span class="brand-name">X Live Follower Counter</span>
+        </a>
+
+        <div class="header-actions">
+          <div class="live-pill-header">
+            <span class="live-pulse-dot"></span>
+            <span>EDGE LIVE</span>
+          </div>
+          <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle theme">
+            <span id="theme-icon">🌙</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-container">
+      
+      <!-- Top Search Bar Card -->
+      <section class="search-bar-section" id="search-section">
+        <form class="search-form" id="search-form" autocomplete="off">
+          <div class="search-input-wrapper">
+            <span class="search-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </span>
+            <input
+              type="text"
+              id="username-input"
+              class="search-input"
+              placeholder="Enter X username (e.g. romitkryadav) or full profile URL..."
+              value="romitkryadav"
+              required
+              aria-label="X username or profile URL"
+            />
+            <button type="submit" id="search-btn" class="search-submit-btn" aria-label="Track profile">
+              <span id="search-btn-text">Track Live</span>
+              <svg class="search-arrow-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+        </form>
+
+        <!-- Inline Error Banner -->
+        <div id="error-banner" class="error-banner hidden" role="alert">
+          <span class="error-icon">⚠️</span>
+          <span id="error-text" class="error-message"></span>
+        </div>
+      </section>
+
+      <!-- Main Live Tracker Display (Screenshot 1 Layout) -->
+      <section class="tracker-main-card" id="tracker-card">
+        
+        <!-- Profile Avatar with Iridescent Gradient Ring -->
+        <div class="avatar-wrapper">
+          <div class="avatar-gradient-ring">
+            <img
+              id="profile-avatar"
+              class="profile-avatar"
+              src="https://pbs.twimg.com/profile_images/2089349778463432704/O8MXOy-2_400x400.jpg"
+              alt="Profile Avatar"
+              referrerpolicy="no-referrer"
+            />
+          </div>
+          <!-- Live Badge attached under Avatar -->
+          <div class="avatar-live-badge">
+            <span class="live-dot-green"></span>
+            <span>LIVE</span>
+          </div>
+        </div>
+
+        <!-- Tracking Pill Button -->
+        <a id="tracking-pill" class="tracking-pill" href="https://x.com/romitkryadav" target="_blank" rel="noopener noreferrer">
+          <span class="tracking-dot"></span>
+          <span>tracking <strong id="tracking-handle">@romitkryadav</strong></span>
+          <span class="tracking-arrow">↗</span>
+        </a>
+
+        <!-- Display Name in Elegant Serif -->
+        <h1 id="profile-name" class="profile-name">Romit Kr Yadav</h1>
+
+        <!-- Subtitle with Sparkle -->
+        <p id="profile-tagline" class="profile-tagline">
+          Live-tracking <span id="tagline-handle">@romitkryadav</span>'s growth in real time ✨
+        </p>
+
+        <!-- Massive Big Follower Number -->
+        <div class="follower-hero-number" id="follower-number" aria-live="polite">
+          302
+        </div>
+
+        <!-- Uppercase Spaced Follower Label -->
+        <div id="follower-label" class="follower-label">
+          ROMITKRYADAV FOLLOWERS
+        </div>
+
+        <!-- Live Monitoring Progress Bar & Countdown Ticker -->
+        <div class="monitoring-ticker-bar">
+          <!-- Circular Countdown Spinner -->
+          <div class="ticker-left">
+            <div class="circular-countdown">
+              <svg class="countdown-svg" viewBox="0 0 36 36">
+                <path
+                  class="circle-bg"
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+                <path
+                  id="countdown-circle-path"
+                  class="circle-progress"
+                  stroke-dasharray="100, 100"
+                  d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+              </svg>
+              <span id="countdown-mini-sec" class="countdown-mini-text">5s</span>
+            </div>
+          </div>
+
+          <!-- Ticker Text -->
+          <div class="ticker-center">
+            <div class="ticker-title">
+              Live monitoring <span id="ticker-seconds" class="ticker-seconds-highlight">5.0s</span>
+            </div>
+            <div class="ticker-sub">
+              Fetching from Cloudflare Worker edge servers
+            </div>
+          </div>
+
+          <!-- Pause / Resume Button -->
+          <div class="ticker-right">
+            <button id="toggle-pause-btn" class="pause-toggle-btn" type="button" aria-label="Pause live stream" title="Pause / Resume Live Polling">
+              <span id="pause-btn-icon">❚❚</span>
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Session Telemetry 4-Metric Grid (Screenshot 2 Layout) -->
+      <section class="telemetry-grid">
+        <div class="telemetry-card">
+          <div class="telemetry-label">TARGET USERNAME</div>
+          <div id="meta-username" class="telemetry-value mono-val">@romitkryadav</div>
+        </div>
+
+        <div class="telemetry-card">
+          <div class="telemetry-label">SESSION DELTA</div>
+          <div id="meta-delta" class="telemetry-value mono-val delta-val">+0</div>
+        </div>
+
+        <div class="telemetry-card">
+          <div class="telemetry-label">POLL ITERATIONS</div>
+          <div id="meta-ticks" class="telemetry-value mono-val">1 ticks</div>
+        </div>
+
+        <div class="telemetry-card">
+          <div class="telemetry-label">LAST VERIFIED</div>
+          <div id="meta-verified" class="telemetry-value mono-val time-val">--:--:-- --</div>
+        </div>
+      </section>
+
+      <!-- In-Session Follower Trend Sparkline (Screenshot 2 Layout) -->
+      <section class="sparkline-section">
+        <div class="sparkline-card">
+          <div class="sparkline-header">
+            <div class="sparkline-title">
+              <span class="sparkline-icon">📈</span>
+              <span>In-Session Follower Trend Sparkline</span>
+            </div>
+            <div class="sparkline-caption">
+              Live updates accumulate history below
+            </div>
+          </div>
+          <div class="sparkline-canvas-container">
+            <svg id="sparkline-svg" class="sparkline-svg" preserveAspectRatio="none" viewBox="0 0 800 120">
+              <defs>
+                <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#ec4899" />
+                  <stop offset="50%" stop-color="#a855f7" />
+                  <stop offset="100%" stop-color="#f43f5e" />
+                </linearGradient>
+                <linearGradient id="area-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="rgba(236, 72, 153, 0.25)" />
+                  <stop offset="100%" stop-color="rgba(236, 72, 153, 0.0)" />
+                </linearGradient>
+                <filter id="glow-filter" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+              <path id="sparkline-area" class="sparkline-area" d="" />
+              <path id="sparkline-path" class="sparkline-path" d="" filter="url(#glow-filter)" />
+              <circle id="sparkline-point" class="sparkline-point" cx="0" cy="0" r="4.5" />
+            </svg>
+            <div id="sparkline-empty" class="sparkline-empty">
+              <span>Streaming real-time live data points every 5 seconds...</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Promoted Accounts Section (Screenshot 3 Layout) -->
+      <section class="accounts-section" id="promoted-accounts-section">
+        <div class="section-title-bar">
+          <div class="section-title-left">
+            <span class="section-icon gold-icon">🔒</span>
+            <span class="section-title-text gold-text">PROMOTED ACCOUNTS</span>
+          </div>
+          <div class="section-title-right">
+            tap to track a promoted account
+          </div>
+        </div>
+
+        <div class="promoted-cards-grid">
+          <!-- Card 1: Romit Kr Yadav -->
+          <button type="button" class="account-card promoted-card border-magenta" data-username="romitkryadav">
+            <div class="account-avatar-ring">
+              <img
+                src="https://pbs.twimg.com/profile_images/2089349778463432704/O8MXOy-2_400x400.jpg"
+                alt="Romit Kr Yadav"
+                class="account-avatar-img"
+                onerror="this.src='https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png'"
+              />
+            </div>
+            <div class="account-info">
+              <div class="account-name">Romit Kr Yadav</div>
+              <div class="account-handle">@romitkryadav</div>
+            </div>
+          </button>
+
+          <!-- Card 2: Abhijit Kumar -->
+          <button type="button" class="account-card promoted-card border-amber" data-username="abhijit_yadav_0018">
+            <div class="account-avatar-ring">
+              <img
+                src="https://pbs.twimg.com/profile_images/1795764049872896000/Y3bK9fG__400x400.jpg"
+                alt="Abhijit Kumar"
+                class="account-avatar-img"
+                onerror="this.src='https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png'"
+              />
+            </div>
+            <div class="account-info">
+              <div class="account-name">Abhijit Kumar</div>
+              <div class="account-handle">@abhijit_yadav_0018</div>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <!-- Popular Live Accounts Section (Screenshot 3 Layout) -->
+      <section class="accounts-section" id="popular-accounts-section">
+        <div class="section-title-bar">
+          <div class="section-title-left">
+            <span class="section-icon gold-icon">📍</span>
+            <span class="section-title-text gold-text">POPULAR LIVE ACCOUNTS</span>
+          </div>
+          <div class="section-title-right">
+            click to switch track target
+          </div>
+        </div>
+
+        <div class="popular-cards-grid">
+          <!-- Elon Musk -->
+          <button type="button" class="account-card popular-card" data-username="elonmusk">
+            <div class="account-avatar-ring">
+              <img
+                src="https://pbs.twimg.com/profile_images/1898436573886038016/zN3-L-Z1_400x400.jpg"
+                alt="Elon Musk"
+                class="account-avatar-img"
+                onerror="this.src='https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png'"
+              />
+            </div>
+            <div class="account-info">
+              <div class="account-name">Elon Musk</div>
+              <div class="account-handle">@elonmusk</div>
+            </div>
+          </button>
+
+          <!-- NASA -->
+          <button type="button" class="account-card popular-card" data-username="NASA">
+            <div class="account-avatar-ring">
+              <img
+                src="https://pbs.twimg.com/profile_images/1321163587679784960/0ZxKlEKB_400x400.jpg"
+                alt="NASA"
+                class="account-avatar-img"
+                onerror="this.src='https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png'"
+              />
+            </div>
+            <div class="account-info">
+              <div class="account-name">NASA</div>
+              <div class="account-handle">@NASA</div>
+            </div>
+          </button>
+
+          <!-- SpaceX -->
+          <button type="button" class="account-card popular-card" data-username="SpaceX">
+            <div class="account-avatar-ring">
+              <img
+                src="https://pbs.twimg.com/profile_images/1082744382585856001/rH_AfMRM_400x400.jpg"
+                alt="SpaceX"
+                class="account-avatar-img"
+                onerror="this.src='https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png'"
+              />
+            </div>
+            <div class="account-info">
+              <div class="account-name">SpaceX</div>
+              <div class="account-handle">@SpaceX</div>
+            </div>
+          </button>
+
+          <!-- MrBeast -->
+          <button type="button" class="account-card popular-card" data-username="MrBeast">
+            <div class="account-avatar-ring">
+              <img
+                src="https://pbs.twimg.com/profile_images/994592419705274368/ScHNfdZu_400x400.jpg"
+                alt="MrBeast"
+                class="account-avatar-img"
+                onerror="this.src='https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png'"
+              />
+            </div>
+            <div class="account-info">
+              <div class="account-name">MrBeast</div>
+              <div class="account-handle">@MrBeast</div>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <!-- Technical & FAQ Section -->
+      <section class="info-section">
+        <h2 class="section-heading">Frequently Asked Questions</h2>
+        <div class="faq-accordion">
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>How does the 5-second live edge sync work?</span>
+              <span class="faq-icon">▾</span>
+            </button>
+            <div class="faq-answer">
+              The application polls our dedicated Cloudflare Worker edge service (<code>https://xfollower.romitkr5539.workers.dev/api/x-followers</code>) every 5 seconds. The Worker retrieves the latest publicly verified follower count directly from X's response without requiring any API keys or tokens.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>Are the follower counts estimated?</span>
+              <span class="faq-icon">▾</span>
+            </button>
+            <div class="faq-answer">
+              No. We strictly never guess or simulate follower counts. Every single count rendered is an authentic number returned directly from X's public edge response.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>Can I track any public X profile?</span>
+              <span class="faq-icon">▾</span>
+            </button>
+            <div class="faq-answer">
+              Yes, any public account on X (Twitter) can be tracked. Private, protected, or restricted accounts do not expose follower metrics publicly.
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-inner">
+        <p>© 2026 X Live Follower Counter. Edge Powered by Cloudflare Workers.</p>
+        <p class="footer-note">Live Edge Service: <code>https://xfollower.romitkr5539.workers.dev</code></p>
+      </div>
+    </footer>
+
+    <!-- Pure Vanilla JS Script -->
+    <script src="/xfollower.js"></script>
+  </body>
+</html>
