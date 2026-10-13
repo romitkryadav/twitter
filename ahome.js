@@ -177,7 +177,7 @@ function renderDownloadResult(data) {
 
     // Duration & caption
     videoDuration.textContent = data.duration ? `Duration: ${formatDuration(data.duration)}` : "Duration: N/A";
-    
+
     if (data.text) {
         captionBox.style.display = "block";
         captionText.textContent = `"${data.text}"`;
@@ -195,8 +195,8 @@ function renderDownloadResult(data) {
         const row = document.createElement("div");
         row.className = "quality-row";
         row.id = `quality-row-${vid.quality}`;
-        
-        const isCurrent = previewPlayer.src === vid.url;
+
+        const isCurrent = previewPlayer.src === proxyUrl(vid.url);
         if (isCurrent) row.classList.add("active");
 
         row.onclick = () => {
@@ -205,7 +205,8 @@ function renderDownloadResult(data) {
             row.classList.add("active");
         };
 
-        const formatName = vid.contentType.split("/")[1]?.toUpperCase() || "MP4";
+        const formatName = vid.contentType ? vid.contentType.split("/")[1]?.toUpperCase() || "MP4" : "MP4";
+        const dlUrl = proxyUrl(vid.url, true);
 
         row.innerHTML = `
             <div class="quality-info">
@@ -215,17 +216,14 @@ function renderDownloadResult(data) {
                     <p>${vid.width} × ${vid.height} • ${formatName}</p>
                 </div>
             </div>
-            <a 
-                href="${vid.url}" 
-                download="X_video_${vid.quality}.mp4" 
-                target="_blank" 
-                rel="noreferrer" 
+            <button
                 class="btn-download-quality primary"
-                onclick="event.stopPropagation();"
+                onclick="event.stopPropagation(); startDownload('${dlUrl}', 'X_video_${vid.quality}.mp4');"
+                aria-label="Download ${vid.quality} video"
             >
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 <span>Download</span>
-            </a>
+            </button>
         `;
         qualitiesList.appendChild(row);
     });
@@ -234,11 +232,57 @@ function renderDownloadResult(data) {
     resultCard.scrollIntoView({ behavior: "smooth" });
 }
 
+// Build a proxied URL through the worker to avoid CORS/download issues
+function proxyUrl(originalUrl, forDownload = false) {
+    const encoded = encodeURIComponent(originalUrl);
+    return `${API_BASE}/proxy?url=${encoded}${forDownload ? "&dl=1" : ""}`;
+}
+
+// Trigger a proper file download — fetch as blob so no new tab ever opens
+async function startDownload(url, filename) {
+    const btn = document.querySelector(`button[onclick*="${filename}"]`);
+    const originalHTML = btn ? btn.innerHTML : null;
+
+    try {
+        // Show loading state on the button
+        if (btn) {
+            btn.disabled = true;
+            btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg><span>Downloading...</span>`;
+        }
+
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Fetch failed");
+
+        const blob = await response.blob();
+        const blobUrl = URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+        a.href = blobUrl;
+        a.download = filename;
+        a.style.display = "none";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        // Clean up blob URL after a short delay
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
+    } catch (err) {
+        console.error("Download failed:", err);
+        showError("Download failed. Please try again.");
+    } finally {
+        if (btn && originalHTML) {
+            btn.disabled = false;
+            btn.innerHTML = originalHTML;
+        }
+    }
+}
+
 // Choose different active quality preview
 function selectQuality(videoObj) {
-    previewPlayer.src = videoObj.url;
+    const src = proxyUrl(videoObj.url);
+    previewPlayer.src = src;
     activeQuality.textContent = `${videoObj.quality} Selected`;
-    
+
     // update current active visual row
     document.querySelectorAll(".quality-row").forEach((row) => {
         row.classList.remove("active");
@@ -248,27 +292,7 @@ function selectQuality(videoObj) {
     });
 }
 
-// =========================================================================
-// FAQ ACCORDION HANDLERS
-// =========================================================================
-document.querySelectorAll(".faq-trigger").forEach((trigger) => {
-    trigger.addEventListener("click", () => {
-        const parent = trigger.parentElement;
-        const isActive = parent.classList.contains("active");
-
-        // Close all other items
-        document.querySelectorAll(".faq-item").forEach((item) => {
-            item.classList.remove("active");
-            item.querySelector(".faq-content").style.maxHeight = null;
-        });
-
-        if (!isActive) {
-            parent.classList.add("active");
-            const content = parent.querySelector(".faq-content");
-            content.style.maxHeight = content.scrollHeight + "px";
-        }
-    });
-});
+// FAQ accordion is handled by romitp.js
 
 // =========================================================================
 // UNIVERSAL MODALS CONTROLLERS

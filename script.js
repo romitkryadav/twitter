@@ -248,27 +248,7 @@ function selectQuality(videoObj) {
     });
 }
 
-// =========================================================================
-// FAQ ACCORDION HANDLERS
-// =========================================================================
-document.querySelectorAll(".faq-trigger").forEach((trigger) => {
-    trigger.addEventListener("click", () => {
-        const parent = trigger.parentElement;
-        const isActive = parent.classList.contains("active");
-
-        // Close all other items
-        document.querySelectorAll(".faq-item").forEach((item) => {
-            item.classList.remove("active");
-            item.querySelector(".faq-content").style.maxHeight = null;
-        });
-
-        if (!isActive) {
-            parent.classList.add("active");
-            const content = parent.querySelector(".faq-content");
-            content.style.maxHeight = content.scrollHeight + "px";
-        }
-    });
-});
+// FAQ accordion is handled by romitp.js
 
 // =========================================================================
 // UNIVERSAL MODALS CONTROLLERS
