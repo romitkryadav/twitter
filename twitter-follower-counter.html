@@ -1,24 +1,33 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Primary SEO Metadata -->
-    <title>X (Twitter) Live Follower Counter – Real-Time Follower Tracker</title>
-    <meta name="description" content="Live-track any X (Twitter) profile follower count in real time with 5-second live edge sync. Pure HTML, CSS, JavaScript powered by Cloudflare Workers." />
+    <title>Twitter Follower Counter – Track Live Follower Counts</title>
+    <meta name="description" content="Check a public X profile follower count with this Twitter follower counter. Enter a username or profile URL and track automatic refreshes." />
     <meta name="keywords" content="x live follower counter, twitter live follower counter, x follower tracker, live twitter follower count, x live follower count, twitter live tracker" />
     <meta name="author" content="Romit Kr Yadav" />
     <meta name="robots" content="index, follow" />
    
     <!-- Google Fonts for High-End Typography -->
-     <link rel="conical" href="https://twitter.threadsgrab.com/twitter-follower-counter" />
+     <link rel="canonical" href="https://twitterdownloader.threadsgrab.com/twitter-follower-counter" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://twitterdownloader.threadsgrab.com/twitter-follower-counter" />
+  <meta property="og:title" content="Twitter Follower Counter – Track Live Follower Counts" />
+  <meta property="og:description" content="Check a public X profile follower count. Enter a username or profile URL and track automatic refreshes." />
+  <meta property="og:site_name" content="Twitter Downloader" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Twitter Follower Counter" />
+  <meta name="twitter:description" content="Check the public follower count for an X profile and track automatic refreshes." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="https://twitter.threadsgrab.com/twixgrab-favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <!-- Pure CSS Stylesheet -->
-    <link rel="stylesheet" href="/xfollower.css" />
+    <link rel="stylesheet" href="./romitkrweb.css" />
+    <link rel="stylesheet" href="./xfollower.css?v=20261114-content1" />
 
     <!-- Structured Data: WebApplication & FAQPage -->
     <script type="application/ld+json">
@@ -27,30 +36,20 @@
       "@graph": [
         {
           "@type": "WebApplication",
-          "name": "X Live Follower Counter",
-          "applicationCategory": "SocialMediaApplication",
+          "name": "Twitter Follower Counter",
+          "applicationCategory": "UtilitiesApplication",
           "operatingSystem": "All",
-          "description": "Live-track any X (Twitter) profile follower count in real-time with 5-second live edge sync."
+          "description": "Check the public follower count for an X profile and track it as the available profile data refreshes."
         },
         {
           "@type": "FAQPage",
           "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "How does this X Live Follower Counter work?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "The tool connects to a high-speed Cloudflare Worker edge service that safely parses publicly exposed X profile metadata and streams live verified follower counts every 5 seconds."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Is the follower count real-time?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes, updates poll every 5.0 seconds from Cloudflare edge servers without generating synthetic or estimated filler numbers."
-              }
-            }
+            {"@type":"Question","name":"How do I check a Twitter follower count?","acceptedAnswer":{"@type":"Answer","text":"Enter the username or profile URL of a public X (Twitter) account, then select Track Live. Its available profile details and follower count will appear in the tracker."}},
+            {"@type":"Question","name":"How often does the Twitter follower counter refresh?","acceptedAnswer":{"@type":"Answer","text":"The tool checks for updated profile data about every five seconds while the page is visible and tracking is active. X may cache or delay public profile totals, so a refresh does not always produce a new number."}},
+            {"@type":"Question","name":"Why is the follower count not updating?","acceptedAnswer":{"@type":"Answer","text":"The publicly available total may not have changed yet, or X may not have reflected a recent change in the data returned to the tool. If the profile cannot be reached, check the username or URL and try again later."}},
+            {"@type":"Question","name":"Can I check a private or protected X account?","acceptedAnswer":{"@type":"Answer","text":"No. This counter can show only follower information available from public profiles. Protected accounts do not make their profile data public for this lookup."}},
+            {"@type":"Question","name":"Can I enter a profile URL instead of a username?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter the username or paste the URL of the profile you want to check. Use the profile page URL, not a post, search result, or timeline link."}},
+            {"@type":"Question","name":"Does the counter save follower history?","acceptedAnswer":{"@type":"Answer","text":"No. The graph shows observations from the current visit only. It is not a long-term follower history, an estimate, or a prediction."}}
           ]
         }
       ]
@@ -58,122 +57,54 @@
     </script>
   </head>
   <body>
-    <!-- Header — matches other X tool pages -->
-    <header class="app-header" id="siteHeader" role="banner">
-      <div class="header-inner">
-
-        <!-- Logo -->
-        <a href="/" class="brand" id="brand-link" aria-label="TwiXgrab - Home">
-          <img src="https://twitter.threadsgrab.com/twixgrab-logo.png" alt="TwiXgrab Logo" width="36" height="36" style="border-radius:8px;object-fit:cover;" loading="eager" />
-          <span class="brand-name">TwiXgrab</span>
+    <a href="#mainContent" class="skip-link">Skip to main content</a>
+    <header class="header" id="siteHeader" role="banner">
+      <div class="container header-inner">
+        <a href="/" class="logo" id="siteLogo" aria-label="Twitter Downloader - Home">
+          <img class="logo-icon" src="./twitter-downloader-icon.svg" alt="" width="40" height="40" loading="eager" decoding="async" />
+          <span>Twitter Downloader</span>
         </a>
-
-        <!-- Desktop nav -->
-        <nav class="xf-desktop-nav" aria-label="Primary Navigation">
-          <a href="/" class="xf-nav-link">Video Downloader</a>
-          <a href="/twitter-image-downloader.html" class="xf-nav-link">Image Downloader</a>
-          <a href="/twitter-dp-downloader.html" class="xf-nav-link">DP Downloader</a>
-          <a href="/twitter-follower-counter.html" class="xf-nav-link xf-nav-link-active">Follower Counter</a>
+        <nav class="nav-desktop" id="desktopNav" aria-label="Primary Navigation">
+          <a href="/twitter-video-downloader" class="nav-link">Video Downloader</a>
+          <a href="/twitter-image-downloader" class="nav-link">Image Downloader</a>
+          <a href="/twitter-dp-downloader" class="nav-link">DP Downloader</a>
+          <a href="/twitter-follower-counter" class="nav-link active" aria-current="page">Follower Counter</a>
         </nav>
-
-        <!-- Right actions -->
         <div class="header-actions">
-          <div class="live-pill-header">
-            <span class="live-pulse-dot"></span>
-            <span>LIVE</span>
-          </div>
-          <button id="theme-toggle-btn" class="theme-toggle-btn" type="button" aria-label="Toggle theme">
-            <span id="theme-icon">🌙</span>
-          </button>
-          <button class="xf-hamburger" id="xfHamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="xfMobileNav">
-            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <line x1="4" x2="20" y1="6" y2="6"/>
-              <line x1="4" x2="20" y1="12" y2="12"/>
-              <line x1="4" x2="20" y1="18" y2="18"/>
-            </svg>
+          <button class="hamburger-btn" id="xfHamburger" type="button" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="xfMobileNav">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
           </button>
         </div>
-
       </div>
     </header>
-
-    <!-- Mobile Nav Drawer -->
-    <nav class="xf-mobile-nav" id="xfMobileNav" aria-label="Mobile Navigation">
-      <a href="/" class="xf-mobile-link">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
-        X Video Downloader
-      </a>
-      <a href="/twitter-image-downloader" class="xf-mobile-link">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
-        X Image Downloader
-      </a>
-      <a href="/twitter-dp-downloader" class="xf-mobile-link">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        X DP Downloader
-      </a>
-      <a href="/twitter-follower-counter" class="xf-mobile-link xf-mobile-link-active">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        X Follower Counter
-      </a>
+    <nav class="mobile-nav" id="xfMobileNav" aria-label="Mobile Navigation">
+      <a href="/" class="nav-link xf-mobile-link">Home</a>
+      <a href="/twitter-video-downloader" class="nav-link xf-mobile-link">Video Downloader</a>
+      <a href="/twitter-image-downloader" class="nav-link xf-mobile-link">Image Downloader</a>
+      <a href="/twitter-dp-downloader" class="nav-link xf-mobile-link">DP Downloader</a>
+      <a href="/twitter-follower-counter" class="nav-link xf-mobile-link" aria-current="page">Follower Counter</a>
     </nav>
-
     <!-- Main Container -->
-    <main class="main-container">
+    <main class="main-container" id="mainContent">
 
-      <!-- Tool Tabs -->
-      <div style="display:flex;justify-content:center;margin:1.5rem 0 0;">
-        <div class="x-tool-tabs" role="tablist" aria-label="X Downloader Tools">
-          <a href="/" class="x-tool-tab" role="tab" aria-label="X Video Downloader">
-            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+      <section class="xf-page-hero" aria-labelledby="heroHeading">
+        <h1 id="heroHeading">Twitter Follower Counter</h1>
+        <p>Check a public X (Twitter) profile by username or profile URL. The counter refreshes automatically while you track the account, so you can watch for changes without reloading the page.</p>
+        <nav class="tool-tabs" id="toolTabs" role="tablist" aria-label="X Downloader Tools">
+          <a href="/twitter-video-downloader" class="tool-tab" role="tab" aria-label="X Video Downloader">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect width="15" height="14" x="1" y="5" rx="2" ry="2"/></svg>
           </a>
-          <a href="/twitter-image-downloader" class="x-tool-tab" role="tab" aria-label="X Image Downloader">
-            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+          <a href="/twitter-image-downloader" class="tool-tab" role="tab" aria-label="X Image Downloader">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
           </a>
-          <a href="/twitter-dp-downloader" class="x-tool-tab" role="tab" aria-label="X DP Downloader">
-            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <a href="/twitter-dp-downloader" class="tool-tab" role="tab" aria-label="X DP Downloader">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </a>
-          <a href="/twitter-follower-counter" class="x-tool-tab x-tool-tab-active" role="tab" aria-selected="true" aria-label="X Follower Counter">
-            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <a href="/twitter-follower-counter" class="tool-tab active" role="tab" aria-selected="true" aria-label="X Follower Counter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
           </a>
-        </div>
-      </div>
-
-      <style>
-        .x-tool-tabs {
-          display: flex;
-          align-items: center;
-          gap: .375rem;
-          background: rgba(255,255,255,.04);
-          border: 1px solid rgba(255,255,255,.08);
-          border-radius: 14px;
-          padding: .375rem;
-        }
-        .x-tool-tab {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 46px;
-          height: 46px;
-          border-radius: 10px;
-          color: rgba(255,255,255,.45);
-          text-decoration: none;
-          transition: color .15s, background .15s;
-        }
-        .x-tool-tab:hover {
-          color: rgba(255,255,255,.85);
-          background: rgba(255,255,255,.07);
-        }
-        .x-tool-tab-active {
-          background: rgba(124,107,232,.18);
-          color: #a78bfa;
-          border: 1px solid rgba(124,107,232,.35);
-        }
-        .x-tool-tab-active:hover {
-          background: rgba(124,107,232,.25);
-          color: #c4b5fd;
-        }
-      </style>
-      
+        </nav>
+      </section>
       <!-- Top Search Bar Card -->
       <section class="search-bar-section" id="search-section">
         <form class="search-form" id="search-form" autocomplete="off">
@@ -239,11 +170,11 @@
         </a>
 
         <!-- Display Name in Elegant Serif -->
-        <h1 id="profile-name" class="profile-name">Romit Kr Yadav</h1>
+        <h2 id="profile-name" class="profile-name">Romit Kr Yadav</h2>
 
         <!-- Subtitle with Sparkle -->
         <p id="profile-tagline" class="profile-tagline">
-          Live-tracking <span id="tagline-handle">@romitkryadav</span>'s growth in real time ✨
+          Tracking the publicly available follower count for <span id="tagline-handle">@romitkryadav</span>
         </p>
 
         <!-- Massive Big Follower Number -->
@@ -354,21 +285,20 @@
               <circle id="sparkline-point" class="sparkline-point" cx="0" cy="0" r="4.5" />
             </svg>
             <div id="sparkline-empty" class="sparkline-empty">
-              <span>Streaming real-time live data points every 5 seconds...</span>
+              <span>New observations appear here as the counter checks the profile.</span>
             </div>
           </div>
         </div>
       </section>
-
       <!-- Promoted Accounts Section (Screenshot 3 Layout) -->
       <section class="accounts-section" id="promoted-accounts-section">
         <div class="section-title-bar">
           <div class="section-title-left">
             <span class="section-icon gold-icon">🔒</span>
-            <span class="section-title-text gold-text">PROMOTED ACCOUNTS</span>
+            <span class="section-title-text gold-text">QUICK-START PROFILES</span>
           </div>
           <div class="section-title-right">
-            tap to track a promoted account
+            Select a profile to start tracking
           </div>
         </div>
 
@@ -412,10 +342,10 @@
         <div class="section-title-bar">
           <div class="section-title-left">
             <span class="section-icon gold-icon">📍</span>
-            <span class="section-title-text gold-text">POPULAR LIVE ACCOUNTS</span>
+            <span class="section-title-text gold-text">SAMPLE PUBLIC PROFILES</span>
           </div>
           <div class="section-title-right">
-            click to switch track target
+            Select a profile to check its count
           </div>
         </div>
 
@@ -485,55 +415,99 @@
           </button>
         </div>
       </section>
+       <section class="info-section counter-guide" aria-labelledby="counterGuideHeading">
+        <h2 class="section-heading" id="counterGuideHeading">How to use the Twitter follower counter</h2>
+        <p>This free Twitter follower counter checks the follower total available for a public X profile. You can look up an account by its username or profile URL, then keep the tracker open to check for changes during your visit.</p>
+        <ol class="counter-steps">
+          <li><strong>Enter the account:</strong> Type the profile username (for example, <code>NASA</code>) or paste the URL of the profile you want to check. Use a profile link rather than a link to an individual post.</li>
+          <li><strong>Start the lookup:</strong> Select <strong>Track Live</strong>. The tracker loads the public profile details and the follower count returned for that account. You do not need to sign in to X or provide an X password.</li>
+          <li><strong>Leave tracking on:</strong> The counter checks for updated profile data about every five seconds while this page is visible and tracking is not paused. Use the pause control if you want to stop automatic checks.</li>
+        </ol>
 
-      <!-- Technical & FAQ Section -->
-      <section class="info-section">
-        <h2 class="section-heading">Frequently Asked Questions</h2>
+        <h3>How to read the follower tracker</h3>
+        <p>The large number shows the latest follower total the tool was able to retrieve. The session change compares that account’s first count in the current tracking session with the latest count. The refresh time and session graph describe checks made during this visit; they are not a saved history or a forecast of future growth.</p>
+
+        <h3>Why the follower count may stay the same</h3>
+        <p>A refresh checks the available profile data; it does not add or estimate followers. If the displayed total has not changed, the public count may be unchanged, or X may not yet have reflected a recent change in the data returned to the tool. Repeated checks can therefore show the same number.</p>
+
+        <h3>Which profiles can be checked?</h3>
+        <p>The counter can display follower information only when it is publicly available. Protected accounts, deleted or suspended profiles, temporary platform restrictions, or a connection issue can prevent a count from loading. Check that the username or profile URL is correct and try again later if the lookup fails.</p>
+      </section>
+      <!-- FAQs -->
+      <section class="info-section" aria-labelledby="faqHeading">
+        <h2 class="section-heading" id="faqHeading">Twitter follower counter FAQs</h2>
         <div class="faq-accordion">
           <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>How does the 5-second live edge sync work?</span>
-              <span class="faq-icon">▾</span>
-            </button>
-            <div class="faq-answer">
-              The application polls our dedicated Cloudflare Worker edge service (<code>https://xfollower.romitkr5539.workers.dev/api/x-followers</code>) every 5 seconds. The Worker retrieves the latest publicly verified follower count directly from X's response without requiring any API keys or tokens.
-            </div>
+            <button class="faq-question" type="button" aria-expanded="false"><span>How do I check a Twitter follower count?</span><span class="faq-icon" aria-hidden="true">▾</span></button>
+            <div class="faq-answer">Enter the username or profile URL of a public X (Twitter) account, then select <strong>Track Live</strong>. Its available profile details and follower count will appear in the tracker.</div>
           </div>
-
           <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Are the follower counts estimated?</span>
-              <span class="faq-icon">▾</span>
-            </button>
-            <div class="faq-answer">
-              No. We strictly never guess or simulate follower counts. Every single count rendered is an authentic number returned directly from X's public edge response.
-            </div>
+            <button class="faq-question" type="button" aria-expanded="false"><span>How often does the Twitter follower counter refresh?</span><span class="faq-icon" aria-hidden="true">▾</span></button>
+            <div class="faq-answer">The tool checks for updated profile data about every five seconds while the page is visible and tracking is active. X may cache or delay public profile totals, so a refresh does not always produce a new number.</div>
           </div>
-
           <div class="faq-item">
-            <button class="faq-question" type="button" aria-expanded="false">
-              <span>Can I track any public X profile?</span>
-              <span class="faq-icon">▾</span>
-            </button>
-            <div class="faq-answer">
-              Yes, any public account on X (Twitter) can be tracked. Private, protected, or restricted accounts do not expose follower metrics publicly.
-            </div>
+            <button class="faq-question" type="button" aria-expanded="false"><span>Why is the follower count not updating?</span><span class="faq-icon" aria-hidden="true">▾</span></button>
+            <div class="faq-answer">The publicly available total may not have changed yet, or X may not have reflected a recent change in the data returned to the tool. If the profile cannot be reached, check the username or URL and try again later.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false"><span>Can I check a private or protected X account?</span><span class="faq-icon" aria-hidden="true">▾</span></button>
+            <div class="faq-answer">No. This counter can show only follower information available from public profiles. Protected accounts do not make their profile data public for this lookup.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false"><span>Can I enter a profile URL instead of a username?</span><span class="faq-icon" aria-hidden="true">▾</span></button>
+            <div class="faq-answer">Yes. Enter the username or paste the URL of the profile you want to check. Use the profile page URL, not a post, search result, or timeline link.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false"><span>Does the counter save follower history?</span><span class="faq-icon" aria-hidden="true">▾</span></button>
+            <div class="faq-answer">No. The graph shows observations from the current visit only. It is not a long-term follower history, an estimate, or a prediction.</div>
           </div>
         </div>
       </section>
-
     </main>
 
-    <!-- Footer -->
-    <footer class="app-footer">
-      <div class="footer-inner">
-        <p>© 2026 X Live Follower Counter. Edge Powered by Cloudflare Workers.</p>
-        <p class="footer-note">Live Edge Service: <code>https://xfollower.romitkr5539.workers.dev</code></p>
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <a href="/" class="logo" aria-label="Twitter Downloader Home">
+              <img class="logo-icon" src="./twitter-downloader-icon.svg" alt="Twitter Downloader Logo" width="40" height="40" loading="lazy" decoding="async" />
+              <span>Twitter Downloader</span>
+            </a>
+            <p>Free online tools to download X / Twitter media and check public profile follower counts.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Other Tools</h4>
+            <ul class="footer-links">
+              <li><a href="/twitter-video-downloader">Video Downloader</a></li>
+              <li><a href="/twitter-image-downloader">Image Downloader</a></li>
+              <li><a href="/twitter-dp-downloader">DP Downloader</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul class="footer-links">
+              <li><a href="/about">About Us</a></li>
+              <li><a href="/contact">Contact</a></li>
+              <li><a href="/privacy-policy">Privacy Policy</a></li>
+              <li><a href="/disclaimer">Disclaimer</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Legal &amp; Support</h4>
+            <ul class="footer-links">
+              <li><a href="/disclaimer">Copyright Requests</a></li>
+              <li><a href="mailto:contact.themistero@gmail.com" class="footer-link-email">Contact Support</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div>&copy; 2026 Twitter Downloader. All rights reserved.</div>
+          <div class="footer-disclaimer-note">This independent tool is not affiliated with X Corp. or Twitter.</div>
+        </div>
       </div>
     </footer>
-
     <!-- Pure Vanilla JS Script -->
-    <script src="/xfollower.js"></script>
+    <script src="./xfollower.js?v=20261114-layout2"></script>
     <script>
       (function () {
         var btn = document.getElementById('xfHamburger');

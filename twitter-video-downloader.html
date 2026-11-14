@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Twitter Video Downloader - Download X Videos</title>
+
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://threadsgrab.com/threadsgrab-logo.png" />
+  <meta name="description" content="Use this Twitter video downloader to save a public video from X or Twitter. Paste a post link, preview available qualities, and download the MP4." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-video-preview:-1" />
+  <meta name="author" content="Twitter Downloader" />
+  <link rel="canonical" href="https://twitterdownloader.threadsgrab.com/twitter-video-downloader" />
+  <meta name="theme-color" content="#4f46e5" />
+  <meta name="referrer" content="no-referrer-when-downgrade" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://twitterdownloader.threadsgrab.com/twitter-video-downloader" />
+  <meta property="og:title" content="Twitter Video Downloader - Save Public X Videos" />
+  <meta property="og:description" content="Use one public X or Twitter post link to preview available video qualities and save the MP4 in your browser." />
+  <meta property="og:image" content="https://threadsgrab.com/threadsgrab.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Twitter Downloader" />
+  <meta property="og:locale" content="en_US" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://twitterdownloader.threadsgrab.com/twitter-video-downloader" />
+  <meta name="twitter:title" content="Twitter Video Downloader - Save Public X Videos" />
+  <meta name="twitter:description" content="Paste a public Twitter or X post link to preview available video qualities and download the MP4." />
+  <meta name="twitter:image" content="https://threadsgrab.com/threadsgrab.png" />
+
+  <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "@id": "https://twitterdownloader.threadsgrab.com/twitter-video-downloader#webapp",
+    "url": "https://twitterdownloader.threadsgrab.com/twitter-video-downloader",
+    "name": "Twitter Video Downloader",
+    "description": "Download videos from public X or Twitter posts. Preview available video qualities and save the selected version as MP4.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript and an HTML5-compatible browser.",
+    "inLanguage": "en",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "featureList": [
+      "Download videos from public X or Twitter posts",
+      "Preview available video qualities",
+      "Save videos as MP4",
+      "Use in a modern desktop or mobile browser"
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What link do I need to download a Twitter video?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Copy the link to the specific public post containing the video. It usually includes /status/; both x.com and twitter.com links are supported." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I download a video from a private account?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. The downloader works with publicly accessible posts and does not bypass protected-account settings or sign-in requirements." }
+      },
+      {
+        "@type": "Question",
+        "name": "What video quality and format can I download?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Available resolutions depend on the source video. Choose from the qualities shown; downloads are MP4 and are not converted to another format." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I download videos on my phone?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Open this page in your phone’s browser, paste the public post link, and download a listed quality. Find the file in your browser’s downloads list or the device’s Downloads location. On iPhone, check Files under Downloads." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is no video appearing for my post?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Check that the link is for a public post containing a video, not a profile or a link preview. Deleted posts, protected posts, and temporarily unavailable sources may not provide a downloadable video." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I repost a video after downloading it?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Downloading a copy does not grant permission to reuse it. Ask the creator for permission before reposting or using the video when required." }
+      }
+    ]
+  },  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to download a video from Twitter",
+    "description": "Copy a public post link, preview its available video qualities, and save a selected MP4.",
+    "totalTime": "PT1M",
+    "step": [
+      { "@type": "HowToStep", "position": 1, "name": "Copy the post link", "text": "Open the public post containing the video and copy its link from the Share menu." },
+      { "@type": "HowToStep", "position": 2, "name": "Paste the link and find the video", "text": "Paste the post URL into the video downloader and select Download to see available qualities." },
+      { "@type": "HowToStep", "position": 3, "name": "Preview a quality and save", "text": "Choose a resolution to preview it, then download that MP4 through your browser." }
+    ]
+  }
+]
+</script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SP0ZHQ7HRQ"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SP0ZHQ7HRQ');
+  </script>
+
+  <link rel="stylesheet" href="romitkrweb.css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://threadsgrab.com/threadsgrab.png" />
+ 
+</head>
+<body>
+  <a href="#mainContent" class="skip-link">Skip to main content</a>
+
+  <!-- Header -->
+  <header class="header" id="siteHeader" role="banner">
+    <div class="container header-inner">
+      <a href="/" class="logo" id="siteLogo" aria-label="Twitter Downloader - Home">
+        <img class="logo-icon" src="./twitter-downloader-icon.svg" alt="Twitter Downloader Logo" width="40" height="40" loading="eager" decoding="async" />
+        <span>Twitter Downloader</span>
+      </a>
+      <nav class="nav-desktop" id="desktopNav" role="navigation" aria-label="Primary Navigation">
+        <a href="/twitter-video-downloader" class="nav-link">Video Downloader</a>
+        <a href="/twitter-image-downloader" class="nav-link">Image Downloader</a>
+        <a href="/twitter-dp-downloader" class="nav-link">DP Downloader</a>
+        <a href="/twitter-follower-counter" class="nav-link">Follower Counter</a>
+      </nav>
+      <div class="header-actions">
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobileNav">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <line x1="4" x2="20" y1="12" y2="12"/>
+            <line x1="4" x2="20" y1="6" y2="6"/>
+            <line x1="4" x2="20" y1="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile Navigation">
+    <a href="/" class="nav-link">Home</a>
+    <a href="/twitter-video-downloader" class="nav-link">X Video Downloader</a>
+    <a href="/twitter-image-downloader" class="nav-link">X Image Downloader</a>
+    <a href="/twitter-dp-downloader" class="nav-link">X DP Downloader</a>
+    <a href="/twitter-follower-counter" class="nav-link">Follower Counter</a>
+    <a href="/about" class="nav-link">About Us</a>
+    <a href="/contact" class="nav-link">Contact</a>
+    <a href="/privacy-policy" class="nav-link">Privacy Policy</a>
+  </nav>
+
+  <main id="mainContent" role="main">
+
+    <!-- Hero & Downloader -->
+    <section class="hero-section" id="downloader" aria-labelledby="heroHeading">
+      <div class="container">
+        <h1 class="hero-title" id="heroHeading">Twitter Video Downloader</h1>
+        <p class="hero-subtitle hero-subtitle-sm">
+          Paste a public post link to preview available video qualities and save the MP4. No X login is needed for public posts.
+        </p>
+
+        <!-- Tool Tabs -->
+        <div class="tool-tabs" id="toolTabs" role="tablist" aria-label="X Downloader Tools">
+          <a href="/twitter-video-downloader" class="tool-tab active" role="tab" aria-selected="true" aria-label="X Video Downloader">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect width="15" height="14" x="1" y="5" rx="2" ry="2"/></svg>
+          </a>
+          <a href="/twitter-image-downloader" class="tool-tab" role="tab" aria-label="X Image Downloader">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+          </a>
+          <a href="/twitter-dp-downloader" class="tool-tab" role="tab" aria-label="X DP Downloader">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </a>
+          <a href="/twitter-follower-counter" class="tool-tab" role="tab" aria-label="X Follower Counter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+          </a>
+        </div>
+
+        <!-- Downloader Card -->
+        <div class="downloader-card" id="downloaderCard">
+
+          <!-- FORM wraps input + button — script.js listens to #downloaderForm submit -->
+          <form id="downloaderForm">
+            <div class="input-group">
+              <div class="url-input-wrapper">
+                <label for="videoUrl" class="visually-hidden">X / Twitter post URL</label>
+                <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                <input type="url" id="videoUrl" class="url-input" placeholder="Paste the link to a public X / Twitter post with a video" autocomplete="off" spellcheck="false" inputmode="url" />
+                <button type="button" id="clearBtn" class="clear-btn" aria-label="Clear input" style="display:none;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                  Clear
+                </button>
+                <button type="button" id="pasteBtn" class="paste-btn" aria-label="Paste from clipboard">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+                  Paste
+                </button>
+              </div>
+              <button type="submit" class="btn-primary" id="submitBtn" aria-label="Download X Video">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download
+              </button>
+            </div>
+          </form>
+
+          <!-- Loading — script.js uses loaderState.style.display -->
+          <div class="loading-box" id="loaderState" role="status" aria-live="polite">
+            <div class="spinner" role="presentation"></div>
+            <div class="loading-status" id="loadingStatus">Processing X Post...</div>
+            <div class="loading-subtext" id="loadingSubtext">Extracting video from X servers</div>
+          </div>
+
+          <!-- Error — script.js uses errorCard.style.display + errorMsg.textContent -->
+          <div class="error-box" id="errorCard" role="alert" aria-live="assertive">
+            <svg class="error-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <div class="error-content">
+              <h4 id="errorTitle">Unable to Process Request</h4>
+              <p id="errorMsg">Please check the URL and make sure the post is publicly viewable.</p>
+            </div>
+          </div>
+
+          <!-- Result — script.js sets resultCard.style.display = "block" to show -->
+          <div id="resultCard" role="region" aria-live="polite" style="margin-top:1.5rem;">
+
+            <!-- Author — script.js sets authorHeader.style.display = "flex" -->
+            <div id="authorHeader" style="display:none;align-items:center;gap:.75rem;margin-bottom:1rem;">
+              <img id="authorAvatar" src="" alt="Author avatar" width="36" height="36" referrerpolicy="no-referrer" style="border-radius:50%;object-fit:cover;" />
+              <div>
+                <div id="authorName" style="font-weight:600;font-size:.95rem;color:var(--text-primary,#f0f0f5);"></div>
+                <div id="authorHandle" style="font-size:.82rem;opacity:.6;"></div>
+              </div>
+            </div>
+
+            <!-- Video Preview -->
+            <div style="border-radius:12px;overflow:hidden;background:#000;margin-bottom:1rem;">
+              <video id="previewPlayer" controls style="width:100%;max-height:380px;display:block;"></video>
+            </div>
+
+            <!-- Duration + active quality -->
+            <div style="display:flex;gap:12px;margin-bottom:.75rem;align-items:center;flex-wrap:wrap;font-size:.82rem;color:var(--text-secondary,#a0a0b8);">
+              <span id="videoDuration">Duration: N/A</span>
+              <span id="activeQuality" style="color:var(--accent-primary,#7c6be8);font-weight:600;"></span>
+            </div>
+
+            <!-- Caption — script.js sets captionBox.style.display = "block" -->
+            <div id="captionBox" style="display:none;margin-bottom:1rem;padding:.75rem 1rem;background:rgba(255,255,255,.03);border-radius:8px;border-left:3px solid var(--accent-primary,#7c6be8);">
+              <p id="captionText" style="font-size:.875rem;opacity:.8;font-style:italic;margin:0;color:var(--text-secondary,#a0a0b8);"></p>
+            </div>
+
+            <!-- Qualities — script.js injects .quality-row divs here -->
+            <div style="margin-bottom:1rem;">
+              <p style="font-size:.78rem;opacity:.55;margin:0 0 .6rem;text-transform:uppercase;letter-spacing:.06em;">Select quality to download</p>
+              <div id="qualitiesList"></div>
+            </div>
+
+          </div><!-- end #resultCard -->
+
+        </div><!-- end .downloader-card -->
+      </div>
+    </section>
+
+    <!-- Steps -->
+    <section class="steps-section" id="how-to-download" aria-labelledby="stepsHeading">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" id="stepsHeading">How to download a video from Twitter</h2>
+          <p class="section-subtitle">Copy a public post link, choose a video quality, and save the MP4.</p>
+        </div>
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-img-frame">
+              <img src="https://threadsgrab.com/ximg/copy-link-to-download-x-video.jpg" alt="Copy the link to a public X post that contains a video" width="480" height="360" loading="lazy" decoding="async" />
+            </div>
+            <h3>Copy the post link</h3>
+            <p>Open the post with the video, choose Share, and copy its link. Use the post URL, not the account profile link.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-img-frame">
+              <img src="https://threadsgrab.com/ximg/twitter-video-downloader-paste-link.jpg" alt="Paste the public post link into the Twitter video downloader" width="480" height="360" loading="lazy" decoding="async" />
+            </div>
+            <h3>Paste the link and find the video</h3>
+            <p>Paste the URL into the box above and select <strong>Download</strong>. If the post is public and has a supported video, the available qualities appear below.</p>
+          </article>
+          <article class="step-card">
+            <div class="step-img-frame">
+              <img src="https://threadsgrab.com/ximg/download-x-video.jpg" alt="Preview and download an available video quality as MP4" width="480" height="360" loading="lazy" decoding="async" />
+            </div>
+            <h3>Preview a quality and save</h3>
+            <p>Select a resolution to preview it, then use its download button. Your browser saves the MP4 to its configured download location.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Video download guide -->
+    <section class="info-section" aria-labelledby="infoHeading">
+      <div class="container">
+        <article class="info-content">
+          <h2 id="infoHeading">Download a video from Twitter or X</h2>
+          <p>Use this Twitter video downloader to save a video attached to a public post. Paste the post URL into the box above; the page checks for available video qualities and lets you preview a version before downloading it. Public posts do not require you to sign in to X.</p>
+
+          <h3>Copy the link to the specific post</h3>
+          <p>Use the URL for the post that contains the video. It usually includes <code>/status/</code>, such as <code>x.com/username/status/123456789</code>; older <code>twitter.com</code> links work too. For a video in a quoted post, copy the link to the post that actually contains the video.</p>
+
+          <h3>Choose a video quality</h3>
+          <p>Available resolutions depend on the source video and what can be retrieved from the post. Choose one of the listed options to preview it, then download that version as an MP4. The tool does not upscale or convert the video.</p>
+
+          <h3>Download on a phone or computer</h3>
+          <p>Use the page in a modern browser on a phone or computer. Find the saved file in the browser’s downloads list or your device’s Downloads location. On iPhone, check Files under Downloads; to move a video to Photos, open it in Files and use Share if that option is available.</p>
+
+          <h3>Why a Twitter video may not download</h3>
+          <ul>
+            <li><strong>Wrong link:</strong> Use the specific post URL, which includes <code>/status/</code>, rather than a profile, search, or timeline page.</li>
+            <li><strong>No video attachment:</strong> A post may contain a photo, plain text, or a link preview to a video hosted elsewhere. This page downloads videos attached to the X post.</li>
+            <li><strong>Private or unavailable post:</strong> Protected posts, deleted posts, and content that requires sign-in are not accessible here.</li>
+            <li><strong>Temporary source issue:</strong> If the post is public and contains a video but no quality loads, the source may be temporarily unavailable. Check the link and try again later.</li>
+          </ul>
+          <p>The tool does not bypass account privacy settings. Downloading a video also does not grant permission to repost or reuse it; ask the creator when permission is required.</p>
+
+          <p>Looking for photos or a profile image? Use the <a href="/twitter-image-downloader">Twitter image downloader</a> or <a href="/twitter-dp-downloader">Twitter profile picture downloader</a>.</p>
+        </article>
+      </div>
+    </section>
+    <!-- Frequently asked questions -->
+    <section class="faq-section" id="faqs" aria-labelledby="faqHeading">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" id="faqHeading">Twitter video downloader FAQs</h2>
+          <p class="section-subtitle">Quick answers about supported links, video quality, and saving.</p>
+        </div>
+        <div style="max-width:720px;margin:0 auto;">
+          <div class="xdl-faq-item faq-item">
+            <button type="button" class="faq-trigger"><span>What link do I need to download a Twitter video?</span><span class="arrow" aria-hidden="true">&#9662;</span></button>
+            <div class="faq-content"><p>Copy the link to the specific public post containing the video. It usually includes <code>/status/</code>; both <code>x.com</code> and <code>twitter.com</code> links are supported.</p></div>
+          </div>
+          <div class="xdl-faq-item faq-item">
+            <button type="button" class="faq-trigger"><span>Can I download a video from a private account?</span><span class="arrow" aria-hidden="true">&#9662;</span></button>
+            <div class="faq-content"><p>No. The downloader works with publicly accessible posts and does not bypass protected-account settings or sign-in requirements.</p></div>
+          </div>
+          <div class="xdl-faq-item faq-item">
+            <button type="button" class="faq-trigger"><span>What video quality and format can I download?</span><span class="arrow" aria-hidden="true">&#9662;</span></button>
+            <div class="faq-content"><p>Available resolutions depend on the source video. Choose from the qualities shown; downloads are MP4 and are not converted to another format.</p></div>
+          </div>
+          <div class="xdl-faq-item faq-item">
+            <button type="button" class="faq-trigger"><span>Can I download videos on my phone?</span><span class="arrow" aria-hidden="true">&#9662;</span></button>
+            <div class="faq-content"><p>Yes. Open this page in your phone’s browser, paste the public post link, and download a listed quality. Find the file in your browser’s downloads list or the device’s Downloads location. On iPhone, check Files under Downloads.</p></div>
+          </div>
+          <div class="xdl-faq-item faq-item">
+            <button type="button" class="faq-trigger"><span>Why is no video appearing for my post?</span><span class="arrow" aria-hidden="true">&#9662;</span></button>
+            <div class="faq-content"><p>Check that the link is for a public post containing a video, not a profile or a link preview. Deleted posts, protected posts, and temporarily unavailable sources may not provide a downloadable video.</p></div>
+          </div>
+          <div class="xdl-faq-item faq-item">
+            <button type="button" class="faq-trigger"><span>Can I repost a video after downloading it?</span><span class="arrow" aria-hidden="true">&#9662;</span></button>
+            <div class="faq-content"><p>Downloading a copy does not grant permission to reuse it. Ask the creator for permission before reposting or using the video when required.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="/" class="logo" aria-label="Twitter Downloader Home">
+            <img class="logo-icon" src="./twitter-downloader-icon.svg" alt="Twitter Downloader Logo" width="40" height="40" loading="lazy" decoding="async" />
+            <span>Twitter Downloader</span>
+          </a>
+          <p>Free online tools to download X / Twitter media. No signup, no software, no limits.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Other Tools</h4>
+          <ul class="footer-links">
+            <li><a href="https://threadsgrab.com/">Threads Downloader</a></li>
+            <li><a href="https://fbviddl.com/">Facebook Downloader</a></li>
+            <li><a href="https://reditgrab.com/">Reddit Downloader</a></li>
+            <li><a href="https://pinviddl.com/">Pinterest Downloader</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
+            <li><a href="/disclaimer">Disclaimer</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal &amp; Support</h4>
+          <ul class="footer-links">
+            <li><a href="/disclaimer">Copyright Requests</a></li>
+            <li>
+              <a href="mailto:contact.themistero@gmail.com" class="footer-link-email">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Contact Support
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Twitter Downloader. All rights reserved.</div>
+        <div class="footer-disclaimer-note">Disclaimer: This tool is independent and not affiliated with X Corp., Twitter, Meta, or Threads.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal overlay — id="modalOverlay" + id="modalContent" required by script.js -->
+  <div id="modalOverlay" class="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+      <div id="modalContent"></div>
+      <div class="modal-footer">
+        <button class="btn-primary btn-close" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- script.js untouched — handles all download logic -->
+  <script src="ahome.js"></script>
+  <script>
+    const sharedUrl = new URLSearchParams(window.location.search).get('url');
+    if (sharedUrl) {
+      const sharedInput = document.getElementById('videoUrl');
+      const sharedForm = document.getElementById('downloaderForm');
+      sharedInput.value = sharedUrl;
+      sharedForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+    }
+  </script>
+  <!-- romitp.js handles mobile nav -->
+  <script src="romitp.js"></script>
+</body>
+</html>
+
+

@@ -1,29 +1,29 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>X (Twitter) Image Downloader – Download Images from X Posts</title>
+  <title>Twitter Image Downloader - Download X Photos</title>
 
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
-  <meta name="description" content="Download images from public X (Twitter) posts in the highest available quality. Paste a tweet URL, preview all images, and download them instantly." />
+  <meta name="description" content="Use this Twitter image downloader to save images from a public X or Twitter post. Preview available images and download them individually or together." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
-  <meta name="author" content="TwiXgrab" />
-  <link rel="canonical" href="https://twitter.threadsgrab.com/twitter-image-downloader/" />
+  <meta name="author" content="Twitter Downloader" />
+  <link rel="canonical" href="https://twitterdownloader.threadsgrab.com/twitter-image-downloader" />
   <meta name="theme-color" content="#4f46e5" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://twitter.threadsgrab.com/twitter-image-downloader/" />
-  <meta property="og:title" content="X (Twitter) Image Downloader – Download Images from X Posts" />
-  <meta property="og:description" content="Download images from public X (Twitter) posts in the highest available quality. Paste a tweet URL, preview all images, and download them instantly." />
+  <meta property="og:url" content="https://twitterdownloader.threadsgrab.com/twitter-image-downloader" />
+  <meta property="og:title" content="Twitter Image Downloader: Save Public X Images" />
+  <meta property="og:description" content="Paste a public X or Twitter post link to preview its images and download them individually or together." />
   <meta property="og:image" content="https://twitter.threadsgrab.com/og-image.jpg" />
-  <meta property="og:site_name" content="TwiXgrab" />
+  <meta property="og:site_name" content="Twitter Downloader" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="X (Twitter) Image Downloader – Download Images from X Posts" />
-  <meta name="twitter:description" content="Download images from public X (Twitter) posts in the highest available quality. Paste a tweet URL and download instantly." />
+  <meta name="twitter:title" content="Twitter Image Downloader: Save Public X Images" />
+  <meta name="twitter:description" content="Paste a public X or Twitter post link to preview its images and download them individually or together." />
 
   <script type="application/ld+json">
   {
@@ -33,7 +33,7 @@
     "applicationCategory": "MultimediaApplication",
     "operatingSystem": "All",
     "browserRequirements": "Requires JavaScript. Requires HTML5.",
-    "description": "Download images from public X (Twitter) posts in the highest available quality using Cloudflare Worker.",
+    "description": "Preview and download image files attached to publicly accessible X or Twitter posts.",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }
   </script>
@@ -45,22 +45,42 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What is an X image downloader?",
-        "acceptedAnswer": { "@type": "Answer", "text": "An X image downloader inspects public X (formerly Twitter) posts, extracts media image URLs, and retrieves the highest publicly available resolution directly for the user." }
+        "name": "What link do I need to download images from Twitter?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Copy the link to the specific public post containing the images. The URL usually includes /status/; links from both x.com and twitter.com are supported." }
       },
       {
         "@type": "Question",
-        "name": "Can I download multiple images from one tweet?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes. If a tweet contains 1–4 images, this tool extracts all of them. You can download each individually or use the Download All feature." }
+        "name": "Can I download multiple images from one post?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. If the public post has multiple available images, they appear for preview. Download an image individually or select Download All to start them one at a time." }
       },
       {
         "@type": "Question",
-        "name": "Can I download images from private tweets?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. This tool operates strictly on publicly accessible X posts and does not bypass logins, authentication, CAPTCHA, or privacy settings." }
+        "name": "Will the downloaded image be in original quality?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The tool retrieves image versions available from the post. Quality and dimensions depend on the source image and the versions X provides; the tool does not upscale images." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I download images from a private account?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Only publicly accessible posts can be used. The tool does not bypass protected-account settings or sign-in requirements." }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are no images appearing for a post?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Check that you pasted a specific public post link and that the post has images attached. Text-only posts, video-only posts, link previews, deleted posts, and temporarily unavailable sources may not return images." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this image downloader on my phone?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. Open the page in your phone’s browser, paste a public post link, and download the images you want. Find saved files in the browser’s downloads list or your device’s Downloads folder." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I repost an image after downloading it?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Downloading a copy does not grant permission to reuse it. Check with the creator before reposting or using an image when permission is required." }
       }
     ]
   }
-  </script>
+</script>
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SP0ZHQ7HRQ"></script>
@@ -71,8 +91,8 @@
   gtag('config', 'G-SP0ZHQ7HRQ');
   </script>
 
-  <link rel="stylesheet" href="/romitkrweb.css" />
-  <link rel="icon" type="image/png" href="https://twitter.threadsgrab.com/twixgrab-favicon.png" />
+  <link rel="stylesheet" href="romitkrweb.css" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
   <link rel="apple-touch-icon" sizes="180x180" href="https://twitter.threadsgrab.com/twixgrab-favicon.png" />
 
   <style>
@@ -499,12 +519,12 @@
   <!-- Header -->
   <header class="header" id="siteHeader" role="banner">
     <div class="container header-inner">
-      <a href="/" class="logo" id="siteLogo" aria-label="TwiXgrab - Home">
-        <img class="logo-icon" src="https://twitter.threadsgrab.com/twixgrab-favicon.png" alt="TwiXgrab Logo" width="40" height="40" loading="eager" decoding="async" />
-        <span>TwiXgrab</span>
+      <a href="/" class="logo" id="siteLogo" aria-label="Twitter Downloader - Home">
+        <img class="logo-icon" src="./twitter-downloader-icon.svg" alt="Twitter Downloader Logo" width="40" height="40" loading="eager" decoding="async" />
+        <span>Twitter Downloader</span>
       </a>
       <nav class="nav-desktop" id="desktopNav" role="navigation" aria-label="Primary Navigation">
-        <a href="/" class="nav-link">Video Downloader</a>
+        <a href="/twitter-video-downloader" class="nav-link">Video Downloader</a>
         <a href="/twitter-image-downloader" class="nav-link">Image Downloader</a>
         <a href="/twitter-dp-downloader" class="nav-link">DP Downloader</a>
         <a href="/twitter-follower-counter" class="nav-link">Follower Counter</a>
@@ -541,12 +561,12 @@
       <div class="container">
         <h1 class="hero-title" id="heroHeading">X (Twitter) Image Downloader</h1>
         <p class="hero-subtitle hero-subtitle-sm">
-          Paste a public X (Twitter) post link below to preview and download all images in the highest available quality — no account, no extension needed.
+          Paste a public X or Twitter post link to preview its images and save the ones you want. No account or extension is needed for public posts.
         </p>
 
         <!-- Tool Tabs -->
         <div class="tool-tabs" id="toolTabs" role="tablist" aria-label="X Downloader Tools">
-          <a href="/" class="tool-tab" role="tab" aria-label="X Video Downloader">
+          <a href="/twitter-video-downloader" class="tool-tab" role="tab" aria-label="X Video Downloader">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect width="15" height="14" x="1" y="5" rx="2" ry="2"/></svg>
           </a>
           <a href="/twitter-image-downloader" class="tool-tab active" role="tab" aria-selected="true" aria-label="X Image Downloader">
@@ -632,7 +652,7 @@
 
               <!-- Bulk Download Bar -->
               <div class="bulk-actions-bar">
-                <div class="bulk-meta-text" id="bulk-meta-text">Download all high-resolution images sequentially</div>
+                <div class="bulk-meta-text" id="bulk-meta-text">Download all images one by one</div>
                 <button type="button" class="btn-download-all" id="download-all-btn">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                   Download All
@@ -644,13 +664,12 @@
         </div><!-- end .downloader-card -->
       </div>
     </section>
-
     <!-- Steps -->
     <section class="steps-section" id="how-to-download" aria-labelledby="stepsHeading">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title" id="stepsHeading">How to Download Images from X (Twitter)</h2>
-          <p class="section-subtitle">Three steps to save all images from any public X post to your device.</p>
+          <p class="section-subtitle">Copy the post link, preview its images, then save one image or download them all.</p>
         </div>
         <div class="steps-grid">
           <article class="step-card">
@@ -661,81 +680,85 @@
           <article class="step-card">
             <div class="step-icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
             <h3>Paste it above and click Download Images</h3>
-            <p>Paste the link into the input box and click Download Images. All images in the post are extracted and previewed instantly.</p>
+            <p>Paste the link into the input box and click Download Images. Available images from the post appear below the input.</p>
           </article>
           <article class="step-card">
             <div class="step-icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
             <h3>Download individually or all at once</h3>
-            <p>Click Download on any single image, or hit Download All to save every image from the post in one go.</p>
+            <p>Choose Download on an image to save it, or select Download All to start the images one at a time.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Info -->
+    <!-- Image download guide -->
     <section class="info-section" aria-labelledby="infoHeading">
       <div class="container">
         <article class="info-content">
-          <h2 id="infoHeading">X (Twitter) Image Downloader — Save Post Images in Original Quality</h2>
-          <p>Paste any public X or Twitter post link and this tool extracts every attached image so you can save them to your device. It works with posts containing 1–4 images and automatically fetches the highest resolution version available on X's CDN — no account, no extension, nothing to install.</p>
+          <h2 id="infoHeading">Download images from a Twitter or X post</h2>
+          <p>Use this Twitter image downloader to preview image files attached to a public X post and save them to your device. Paste the link to the post, review the images found, then download them individually or start a sequential download of all images.</p>
 
-          <h2>Quality and Format</h2>
-          <p>When users upload images to X, the platform generates multiple size variants. This tool requests the highest original quality format (<code>name=orig</code>) without compression or artificial upscaling, so you always get the authentic, full-resolution file as uploaded by the original poster.</p>
+          <h3>Use the link to the post</h3>
+          <p>Copy the link to the specific post that contains the images. A post URL usually includes <code>/status/</code>, for example <code>x.com/username/status/123456789</code>. Links using <code>twitter.com</code> are also supported. A profile or search page does not identify one post.</p>
 
-          <h2>When Images Won't Download</h2>
+          <h3>Image quality and file details</h3>
+          <p>The downloader retrieves image versions available from the public post. The displayed dimensions and final image quality depend on the source image and the versions X makes available. The tool does not create detail that is missing from the source or upscale a smaller image.</p>
+
+          <h3>Save images on a phone or computer</h3>
+          <p>Open the page in a modern mobile or desktop browser. Download one image from its card, or use <strong>Download All</strong> to start each image download in sequence. Your browser may ask where to save the files; otherwise, check its downloads list or your device’s Downloads folder.</p>
+
+          <h3>Why an image may not appear</h3>
           <ul>
-            <li><strong>The account is private.</strong> This tool only works with posts publicly visible without logging in.</li>
-            <li><strong>The post was deleted or the link is incomplete.</strong> Go back to X and copy the link again.</li>
-            <li><strong>The post contains only video or text.</strong> There are no images to extract in that case.</li>
-            <li><strong>The URL format is wrong.</strong> Make sure it's an x.com or twitter.com status link.</li>
+            <li><strong>Wrong link:</strong> Paste the URL of a specific post, not a profile, search, or timeline page.</li>
+            <li><strong>No attached image:</strong> A text-only post, a video-only post, or a link preview may not have an image that this tool can retrieve from the post.</li>
+            <li><strong>Post unavailable:</strong> Protected or deleted posts, and posts that require sign-in, cannot be accessed here.</li>
+            <li><strong>Temporary loading issue:</strong> If a public post has images but none appear, check the link and try again later.</li>
           </ul>
+          <p>The tool does not bypass account privacy settings. Downloading an image does not grant permission to repost or reuse it; check with the creator when permission is required.</p>
 
-          <h2>Using What You Download</h2>
-          <p>Downloading a public image for personal use is different from reposting or redistributing it. Copyright stays with whoever made it. If you plan to reuse an image, get permission from the creator first.</p>
+          <p>Need a different format? Try the <a href="/twitter-video-downloader">Twitter video downloader</a> or the <a href="/twitter-dp-downloader">Twitter profile picture downloader</a>.</p>
         </article>
       </div>
     </section>
-
-    <!-- FAQ -->
+    <!-- Frequently asked questions -->
     <section class="faq-section" id="faqs" aria-labelledby="faqHeading">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title" id="faqHeading">Frequently Asked Questions</h2>
-          <p class="section-subtitle">Common questions about downloading images from X and Twitter posts.</p>
+          <h2 class="section-title" id="faqHeading">Twitter image downloader FAQs</h2>
+          <p class="section-subtitle">Answers about post links, image quality, and saving your files.</p>
         </div>
         <div style="max-width:720px;margin:0 auto;">
           <div class="xdl-faq-item faq-item">
-            <button class="faq-trigger"><span>What is an X image downloader?</span><span class="arrow">&#9662;</span></button>
-            <div class="faq-content"><p>An X image downloader is a web utility that inspects public X (formerly Twitter) posts, extracts the media image URLs, and retrieves the highest publicly available resolution directly for you.</p></div>
+            <button type="button" class="faq-trigger"><span>What link do I need to download images from Twitter?</span><span class="arrow" aria-hidden="true">&#9662;</span></button>
+            <div class="faq-content"><p>Copy the link to the specific public post containing the images. The URL usually includes <code>/status/</code>; links from both <code>x.com</code> and <code>twitter.com</code> are supported.</p></div>
           </div>
           <div class="xdl-faq-item faq-item">
-            <button class="faq-trigger"><span>Can I download multiple images from one tweet?</span><span class="arrow">&#9662;</span></button>
-            <div class="faq-content"><p>Yes. If a tweet contains 1, 2, 3, or 4 images, this tool extracts all of them. You can download each one individually or use the Download All button to save everything sequentially.</p></div>
+            <button type="button" class="faq-trigger"><span>Can I download multiple images from one post?</span><span class="arrow" aria-hidden="true">&#9662;</span></button>
+            <div class="faq-content"><p>Yes. If the public post has multiple available images, they appear for preview. Download an image individually or select Download All to start them one at a time.</p></div>
           </div>
           <div class="xdl-faq-item faq-item">
-            <button class="faq-trigger"><span>Can I download images from private tweets?</span><span class="arrow">&#9662;</span></button>
-            <div class="faq-content"><p>No. This tool operates strictly on publicly accessible X posts. It does not bypass logins, authentication, CAPTCHA, or privacy settings.</p></div>
+            <button type="button" class="faq-trigger"><span>Will the downloaded image be in original quality?</span><span class="arrow" aria-hidden="true">&#9662;</span></button>
+            <div class="faq-content"><p>The tool retrieves image versions available from the post. Quality and dimensions depend on the source image and the versions X provides; the tool does not upscale images.</p></div>
           </div>
           <div class="xdl-faq-item faq-item">
-            <button class="faq-trigger"><span>Does this tool reduce image quality?</span><span class="arrow">&#9662;</span></button>
-            <div class="faq-content"><p>No. The Cloudflare Worker automatically requests the highest original quality parameter (<code>name=orig</code>) exposed on X CDN servers without compression or artificial upscaling.</p></div>
+            <button type="button" class="faq-trigger"><span>Can I download images from a private account?</span><span class="arrow" aria-hidden="true">&#9662;</span></button>
+            <div class="faq-content"><p>No. Only publicly accessible posts can be used. The tool does not bypass protected-account settings or sign-in requirements.</p></div>
           </div>
           <div class="xdl-faq-item faq-item">
-            <button class="faq-trigger"><span>Is the X image downloader free?</span><span class="arrow">&#9662;</span></button>
-            <div class="faq-content"><p>Yes — 100% free and open-source, built using Cloudflare Worker serverless edge functions. No sign-up, no fees, no watermarks.</p></div>
+            <button type="button" class="faq-trigger"><span>Why are no images appearing for a post?</span><span class="arrow" aria-hidden="true">&#9662;</span></button>
+            <div class="faq-content"><p>Check that you pasted a specific public post link and that the post has images attached. Text-only posts, video-only posts, link previews, deleted posts, and temporarily unavailable sources may not return images.</p></div>
           </div>
           <div class="xdl-faq-item faq-item">
-            <button class="faq-trigger"><span>Does this tool store downloaded images?</span><span class="arrow">&#9662;</span></button>
-            <div class="faq-content"><p>No. The Cloudflare Worker streams images directly between the public CDN and your browser. No images, databases, or user logs are permanently stored.</p></div>
+            <button type="button" class="faq-trigger"><span>Can I use this image downloader on my phone?</span><span class="arrow" aria-hidden="true">&#9662;</span></button>
+            <div class="faq-content"><p>Yes. Open the page in your phone’s browser, paste a public post link, and download the images you want. Find saved files in the browser’s downloads list or your device’s Downloads folder.</p></div>
           </div>
           <div class="xdl-faq-item faq-item">
-            <button class="faq-trigger"><span>Does it work on mobile?</span><span class="arrow">&#9662;</span></button>
-            <div class="faq-content"><p>Yes. It works in any modern mobile browser — Safari on iOS and Chrome on Android — no app required.</p></div>
+            <button type="button" class="faq-trigger"><span>Can I repost an image after downloading it?</span><span class="arrow" aria-hidden="true">&#9662;</span></button>
+            <div class="faq-content"><p>Downloading a copy does not grant permission to reuse it. Check with the creator before reposting or using an image when permission is required.</p></div>
           </div>
         </div>
       </div>
     </section>
-
   </main>
 
   <!-- Footer -->
@@ -743,19 +766,19 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <a href="/" class="logo" aria-label="TwiXgrab Home">
-            <img class="logo-icon" src="https://twitter.threadsgrab.com/twixgrab-favicon.png" alt="TwiXgrab Logo" width="40" height="40" loading="lazy" decoding="async" />
-            <span>TwiXgrab</span>
+          <a href="/" class="logo" aria-label="Twitter Downloader Home">
+            <img class="logo-icon" src="./twitter-downloader-icon.svg" alt="Twitter Downloader Logo" width="40" height="40" loading="lazy" decoding="async" />
+            <span>Twitter Downloader</span>
           </a>
           <p>Free online tools to download X / Twitter media. No signup, no software, no limits.</p>
         </div>
         <div class="footer-col">
           <h4>Tools</h4>
           <ul class="footer-links">
-            <li><a href="/">Threads Video Downloader</a></li>
-            <li><a href="/twitter-image-downloader">Threads Image Downloader</a></li>
-            <li><a href="/twitter-dp-downloader">Threads DP Downloader</a></li>
-            <li><a href="/twitter-follower-counter">Threads Follower Counter</a></li>
+            <li><a href="/twitter-video-downloader">Twitter Video Downloader</a></li>
+            <li><a href="/twitter-image-downloader">Twitter Image Downloader</a></li>
+            <li><a href="/twitter-dp-downloader">Twitter Profile Picture Downloader</a></li>
+            <li><a href="/twitter-follower-counter">Twitter Follower Counter</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -770,7 +793,7 @@
         <div class="footer-col">
           <h4>Legal &amp; Support</h4>
           <ul class="footer-links">
-            <li><a href="/disclaimer">DMCA Policy</a></li>
+            <li><a href="/disclaimer">Copyright Requests</a></li>
             <li>
               <a href="mailto:contact.themistero@gmail.com" class="footer-link-email">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -781,7 +804,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <div>&copy; 2026 TwiXgrab. All rights reserved.</div>
+        <div>&copy; 2026 Twitter Downloader. All rights reserved.</div>
         <div class="footer-disclaimer-note">Disclaimer: This tool is independent and not affiliated with X Corp., Twitter, Meta, or Threads.</div>
       </div>
     </div>
@@ -796,8 +819,17 @@
   </div>
 
   <!-- Downloader logic — untouched -->
-  <script src="/imgscript.js"></script>
+  <script src="imgscript.js"></script>
+  <script>
+    const sharedUrl = new URLSearchParams(window.location.search).get('url');
+    if (sharedUrl) {
+      const sharedInput = document.getElementById('tweet-url-input');
+      const sharedForm = document.getElementById('downloader-form');
+      sharedInput.value = sharedUrl;
+      sharedForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+    }
+  </script>
   <!-- Mobile nav -->
-  <script src="/romitp.js"></script>
+  <script src="romitp.js"></script>
 </body>
 </html>

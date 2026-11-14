@@ -419,16 +419,10 @@ body {
   letter-spacing: -0.03em;
   font-variant-numeric: tabular-nums;
   margin-bottom: 0.85rem;
-  transition: transform 0.2s ease;
+  transition: color 0.25s ease;
   user-select: all;
 }
 
-.follower-hero-number.updating {
-  animation: scale-bump 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes scale-bump {
-  0% { transform: scale(1); }
   50% { transform: scale(1.04); }
   100% { transform: scale(1); }
 }
@@ -1074,4 +1068,181 @@ body {
 
 @media (max-width: 768px) {
   .xf-desktop-nav { display: none; }
+}
+
+/* Shared downloader-page layout refinements */
+body {
+  background-image: none;
+}
+
+.header-inner {
+  max-width: 1120px;
+  min-height: 68px;
+}
+
+.main-container {
+  max-width: 980px;
+  gap: 1.25rem;
+  padding-top: 1.5rem;
+}
+
+.xf-page-hero {
+  width: 100%;
+  max-width: 860px;
+  margin: .25rem auto .25rem;
+  text-align: center;
+}
+
+.xf-page-hero h1 {
+  margin: 0;
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 4.2vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: -.045em;
+  line-height: 1.12;
+}
+
+.xf-page-hero p {
+  max-width: 620px;
+  margin: .8rem auto 0;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.search-bar-section {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 1rem;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .2);
+}
+
+.tracker-main-card,
+.telemetry-grid,
+.sparkline-section,
+.accounts-section,
+.info-section {
+  width: 100%;
+  max-width: 940px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.tracker-main-card {
+  padding: 2.25rem 1.5rem 1.75rem;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .25);
+}
+
+.sparkline-card,
+.accounts-section,
+.info-section {
+  border-radius: var(--radius-lg);
+}
+
+.info-section h3 {
+  margin: 1.5rem 0 .45rem;
+  color: var(--text-main);
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+.info-section p {
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+
+.info-section .section-heading:not(:first-child) {
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    padding: 1.25rem 1rem 2.5rem;
+    gap: 1rem;
+  }
+
+  .xf-page-hero {
+    margin-top: .25rem;
+  }
+
+  .xf-page-hero p {
+    font-size: .94rem;
+  }
+
+  .search-bar-section {
+    padding: .75rem;
+  }
+
+  .tracker-main-card {
+    padding: 1.75rem 1rem 1.25rem;
+  }
+}
+/* Match the shared downloader tool-tab design */
+.tool-tabs {
+  display: inline-flex;
+  background-color: #121215;
+  padding: .35rem;
+  border-radius: 9999px;
+  border: 1px solid #27272a;
+  margin-bottom: 2rem;
+  gap: .25rem;
+}
+
+.tool-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: .6rem 1.25rem;
+  border: 0;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: .9rem;
+  color: #a1a1aa;
+  text-decoration: none;
+  transition: all .15s ease;
+  white-space: nowrap;
+}
+
+.tool-tab:hover {
+  color: #f4f4f5;
+  background: rgba(255, 255, 255, .05);
+}
+
+.tool-tab.active {
+  background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(168, 85, 247, .25);
+}
+
+@media (max-width: 560px) {
+  .tool-tab {
+    padding: .5rem .85rem;
+  }
+
+  .tool-tab svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* Readable instructions on the follower counter page */
+.counter-guide .counter-steps {
+  margin: 1rem 0 1.25rem;
+  padding-left: 1.4rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+.counter-guide .counter-steps li {
+  padding-left: .25rem;
+  margin-bottom: .55rem;
+}
+.counter-guide .counter-steps li::marker {
+  color: #a78bfa;
+  font-weight: 700;
 }

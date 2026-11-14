@@ -1,30 +1,30 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>X (Twitter) DP Downloader – Download Profile Picture</title>
+  <title>Twitter DP Downloader - Download X Profile Pictures</title>
 
   <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
   <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
-  <meta name="description" content="Download a public X (Twitter) profile picture in the highest available quality. Enter a username or profile URL, preview the DP, and download it instantly." />
+  <meta name="description" content="Use this Twitter DP downloader to preview and save a public X profile picture. Enter a username or profile link to download the available image." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
-  <meta name="author" content="TwiXgrab" />
-  <link rel="canonical" href="https://twitter.threadsgrab.com/twitter-dp-downloader/" />
-  <link rel="icon" type="image/png" href="https://twitter.threadsgrab.com/twixgrab-favicon.png" />
+  <meta name="author" content="Twitter Downloader" />
+  <link rel="canonical" href="https://twitterdownloader.threadsgrab.com/twitter-dp-downloader" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
   <meta name="theme-color" content="#4f46e5" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://twitter.threadsgrab.com/twitter-dp-downloader/" />
-  <meta property="og:title" content="X (Twitter) DP Downloader – Download Profile Picture" />
-  <meta property="og:description" content="Download a public X (Twitter) profile picture in the highest available quality. No login required." />
+  <meta property="og:url" content="https://twitterdownloader.threadsgrab.com/twitter-dp-downloader" />
+  <meta property="og:title" content="Twitter DP Downloader: Save Public Profile Pictures" />
+  <meta property="og:description" content="Enter a public X username or profile link to preview and save its profile picture." />
   <meta property="og:image" content="https://twitter.threadsgrab.com/og-image.jpg" />
-  <meta property="og:site_name" content="TwiXgrab" />
+  <meta property="og:site_name" content="Twitter Downloader" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="X (Twitter) DP Downloader – Download Profile Picture" />
-  <meta name="twitter:description" content="Download a public X (Twitter) profile picture in the highest available quality. No login required." />
+  <meta name="twitter:title" content="Twitter DP Downloader: Save Public Profile Pictures" />
+  <meta name="twitter:description" content="Enter a public X username or profile link to preview and save its profile picture." />
 
   <script type="application/ld+json">
   {
@@ -32,11 +32,11 @@
     "@graph": [
       {
         "@type": "WebApplication",
-        "name": "X (Twitter) DP Downloader",
+        "name": "Twitter DP Downloader",
         "applicationCategory": "MultimediaApplication",
         "operatingSystem": "All",
-        "browserRequirements": "Requires JavaScript. Requires HTML5.",
-        "description": "Download a public X (Twitter) profile picture in the highest available quality with zero API keys.",
+        "browserRequirements": "Requires JavaScript and an HTML5-compatible browser.",
+        "description": "Preview and download profile pictures from publicly accessible X or Twitter accounts.",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       },
       {
@@ -44,24 +44,44 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "What is an X DP downloader?",
-            "acceptedAnswer": { "@type": "Answer", "text": "An X DP downloader retrieves publicly accessible profile picture data from any public X (formerly Twitter) profile and lets you download the highest available resolution." }
+            "name": "How do I download a Twitter profile picture?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Enter a public X username, such as @username, or a profile link. Select Get Profile Picture, preview the result, and choose Download Image to save the available image." }
           },
           {
             "@type": "Question",
-            "name": "How do I download an X profile picture?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Enter a public X profile URL or username, click 'Get Profile Picture', preview the avatar, and click 'Download HD'." }
+            "name": "Can I use a Twitter.com profile link?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. Profile links from both x.com and twitter.com are supported. You can also enter the account’s username." }
           },
           {
             "@type": "Question",
-            "name": "Can I download a private X profile picture?",
-            "acceptedAnswer": { "@type": "Answer", "text": "No. This tool only processes publicly accessible profiles and respects privacy restrictions." }
+            "name": "Can I download a profile picture from a private account?",
+            "acceptedAnswer": { "@type": "Answer", "text": "The tool only retrieves profile images that are publicly accessible. It does not bypass protected-account settings or sign-in requirements." }
+          },
+          {
+            "@type": "Question",
+            "name": "What image quality or size will I get?",
+            "acceptedAnswer": { "@type": "Answer", "text": "The available image version and dimensions depend on the profile image and source data X provides. The tool does not upscale the image or add detail." }
+          },
+          {
+            "@type": "Question",
+            "name": "Why can’t I find a profile picture?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Check the username or profile link. Deleted, suspended, protected, or sign-in-restricted accounts, default avatars, and temporary source issues may not return an image." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use this downloader on my phone?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. Open this page in your phone’s browser, enter a public username or profile link, and download the available image. Check the browser’s downloads list or your device’s Downloads folder." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I reuse or repost a downloaded profile picture?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Downloading an image does not grant permission to reuse it. Ask the account holder before reposting or using the picture when permission is required." }
           }
         ]
       }
     ]
   }
-  </script>
+</script>
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SP0ZHQ7HRQ"></script>
@@ -72,8 +92,7 @@
   gtag('config', 'G-SP0ZHQ7HRQ');
   </script>
 
-  <link rel="stylesheet" href="/romitkrweb.css" />
-  <link rel="icon" type="image/png" href="https://twitter.threadsgrab.com/twixgrab-favicon.png" />
+  <link rel="stylesheet" href="romitkrweb.css" />
   <link rel="apple-touch-icon" sizes="180x180" href="https://twitter.threadsgrab.com/twixgrab-favicon.png" />
 
   <style>
@@ -293,12 +312,12 @@
   <!-- Header -->
   <header class="header" id="siteHeader" role="banner">
     <div class="container header-inner">
-      <a href="/" class="logo" id="siteLogo" aria-label="TwiXgrab - Home">
-        <img class="logo-icon" src="https://twitter.threadsgrab.com/twixgrab-favicon.png" alt="TwiXgrab Logo" width="40" height="40" loading="eager" decoding="async" />
-        <span>TwiXgrab</span>
+      <a href="/" class="logo" id="siteLogo" aria-label="Twitter Downloader - Home">
+        <img class="logo-icon" src="./twitter-downloader-icon.svg" alt="Twitter Downloader Logo" width="40" height="40" loading="eager" decoding="async" />
+        <span>Twitter Downloader</span>
       </a>
       <nav class="nav-desktop" id="desktopNav" role="navigation" aria-label="Primary Navigation">
-        <a href="/" class="nav-link">Video Downloader</a>
+        <a href="/twitter-video-downloader" class="nav-link">Video Downloader</a>
         <a href="/twitter-image-downloader" class="nav-link">Image Downloader</a>
         <a href="/twitter-dp-downloader" class="nav-link">DP Downloader</a>
         <a href="/twitter-follower-counter" class="nav-link">Follower Counter</a>
@@ -332,14 +351,14 @@
     <!-- Hero & Downloader -->
     <section class="hero-section" id="downloader" aria-labelledby="heroHeading">
       <div class="container">
-        <h1 class="hero-title" id="heroHeading">X (Twitter) DP Downloader</h1>
+        <h1 class="hero-title" id="heroHeading">Twitter DP Downloader</h1>
         <p class="hero-subtitle hero-subtitle-sm">
-          Enter a public X username or profile URL to preview and download the profile picture in the highest available quality — no account needed.
+          Enter a public X username or profile link to preview and download its profile picture. No X account is needed for publicly accessible profiles.
         </p>
 
         <!-- Tool Tabs -->
         <div class="tool-tabs" id="toolTabs" role="tablist" aria-label="X Downloader Tools">
-          <a href="/" class="tool-tab" role="tab" aria-label="X Video Downloader">
+          <a href="/twitter-video-downloader" class="tool-tab" role="tab" aria-label="X Video Downloader">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect width="15" height="14" x="1" y="5" rx="2" ry="2"/></svg>
           </a>
           <a href="/twitter-image-downloader" class="tool-tab" role="tab" aria-label="X Image Downloader">
@@ -387,7 +406,7 @@
           <div class="loading-box" id="loadingBox" role="status" aria-live="polite">
             <div class="spinner" role="presentation"></div>
             <div>Finding profile picture...</div>
-            <div style="font-size:.8rem;opacity:.6;">Connecting via Cloudflare Worker &amp; extracting high-res assets</div>
+            <div style="font-size:.8rem;opacity:.6;">Checking for a publicly available profile picture</div>
           </div>
 
           <!-- Alert / Error -->
@@ -400,7 +419,7 @@
           <article id="resultCard" role="region" aria-live="polite" style="text-align:center;margin-top:1.5rem;">
             <div class="avatar-preview-container">
               <img src="" alt="X Profile Picture" class="avatar-image" id="avatarImg" referrerpolicy="no-referrer" />
-              <span class="quality-badge-dp" id="qualityBadge">HD</span>
+              <span class="quality-badge-dp" id="qualityBadge">Image</span>
             </div>
             <h2 class="profile-display-name" id="displayName">Name</h2>
             <div class="profile-username-text" id="username">@username</div>
@@ -421,7 +440,7 @@
             <div class="dp-action-buttons">
               <a href="#" class="btn-dl-hd" id="downloadBtn">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Download HD
+                Download Image
               </a>
               <a href="#" class="btn-open-img" id="openImageBtn" target="_blank" rel="noopener noreferrer">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -439,7 +458,7 @@
       <div class="container">
         <div class="section-header">
           <h2 class="section-title" id="stepsHeading">How to Download an X Profile Picture</h2>
-          <p class="section-subtitle">Five simple steps to save any public X (Twitter) DP to your device.</p>
+          <p class="section-subtitle">Three steps to find and save a profile picture from a public X account.</p>
         </div>
         <div class="steps-grid">
           <article class="step-card">
@@ -450,80 +469,85 @@
           <article class="step-card">
             <div class="step-icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
             <h3>Paste it above and click Get Profile Picture</h3>
-            <p>Paste the URL or type the @username into the input box and click the button. The tool fetches the profile data instantly.</p>
+            <p>Paste the URL or type the @username into the input box and click the button. The profile preview appears if the account and image are publicly available.</p>
           </article>
           <article class="step-card">
             <div class="step-icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
-            <h3>Download HD</h3>
-            <p>Preview the profile picture, then click Download HD to save the full-resolution image directly to your device.</p>
+            <h3>Download the profile picture</h3>
+            <p>Preview the image, then select Download Image to save the available profile picture file to your device.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Info -->
+    <!-- Profile picture guide -->
     <section class="info-section" aria-labelledby="infoHeading">
       <div class="container">
         <article class="info-content">
-          <h2 id="infoHeading">X (Twitter) DP Downloader — Save Profile Pictures in HD</h2>
-          <p>Enter any public X username or profile URL and this tool retrieves the highest available resolution version of the profile picture directly from X's content delivery network. No account needed, no software to install, and no API keys required.</p>
+          <h2 id="infoHeading">Download a profile picture from Twitter or X</h2>
+          <p>This Twitter DP downloader lets you preview and save the profile picture associated with a publicly accessible X account. Enter the account’s username or profile URL, review the result, and choose the download option.</p>
 
-          <h2>What Quality Will I Get?</h2>
-          <p>The downloader delivers the highest legitimate publicly available version — typically the 400×400 uncompressed version or the original uploaded format as served by X's CDN. No artificial upscaling or neural enhancement is applied; you get the authentic, uncorrupted profile photo.</p>
+          <h3>Enter a username or profile link</h3>
+          <p>You can enter a username such as <code>@username</code> or a profile URL such as <code>x.com/username</code>. Links using the older <code>twitter.com</code> domain are also supported. Check the spelling and make sure the link points to a profile rather than a post.</p>
 
-          <h2>When a Profile Picture Won't Download</h2>
+          <h3>Image quality and dimensions</h3>
+          <p>The tool provides the profile image version available from the public account. The dimensions and image quality depend on the image and source data X makes available. The downloader does not add detail or upscale a smaller image.</p>
+
+          <h3>Save the image on a phone or computer</h3>
+          <p>Use the page in a modern mobile or desktop browser. After previewing the profile picture, select <strong>Download Image</strong>. Your browser may ask where to save it; otherwise, check the browser’s downloads list or your device’s Downloads folder.</p>
+
+          <h3>Why a profile picture may not appear</h3>
           <ul>
-            <li><strong>The account is private or suspended.</strong> This tool only works with profiles publicly visible without logging in.</li>
-            <li><strong>The account doesn't exist.</strong> Double-check the username or URL for typos.</li>
-            <li><strong>The user has no profile picture set.</strong> Accounts using the default avatar won't yield a custom image.</li>
+            <li><strong>Username or link is incorrect:</strong> Check the spelling, remove extra characters, and use a profile URL rather than a post link.</li>
+            <li><strong>Profile is unavailable:</strong> Deleted, suspended, protected, or sign-in-restricted accounts may not return a profile image.</li>
+            <li><strong>No custom image is available:</strong> Some accounts use a default avatar or have no accessible profile image.</li>
+            <li><strong>Temporary loading issue:</strong> If the profile is public but no image appears, try again later.</li>
           </ul>
+          <p>The tool does not bypass account privacy settings. Downloading an image does not grant permission to repost or reuse it; ask the account holder when permission is required.</p>
 
-          <h2>Using What You Download</h2>
-          <p>Downloading a public profile picture for personal reference is different from reproducing or distributing it. The image remains the intellectual property of its owner. If you intend to reuse it, get permission from the account holder first.</p>
+          <p>Looking for another kind of media? Try the <a href="/twitter-video-downloader">Twitter video downloader</a> or the <a href="/twitter-image-downloader">Twitter image downloader</a>.</p>
         </article>
       </div>
     </section>
-
-    <!-- FAQ -->
+    <!-- Frequently asked questions -->
     <section class="faq-section" id="faqs" aria-labelledby="faqHeading">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title" id="faqHeading">Frequently Asked Questions</h2>
-          <p class="section-subtitle">Common questions about downloading X (Twitter) profile pictures.</p>
+          <h2 class="section-title" id="faqHeading">Twitter DP downloader FAQs</h2>
+          <p class="section-subtitle">Answers about usernames, profile links, image quality, and downloads.</p>
         </div>
         <div style="max-width:720px;margin:0 auto;">
           <div class="xdl-faq-item faq-item">
-            <button class="faq-trigger"><span>What is an X DP downloader?</span><span class="arrow">&#9662;</span></button>
-            <div class="faq-content"><p>An X DP downloader is a lightweight web tool that lets you inspect and download the public display picture (avatar) of any public X (Twitter) profile in high resolution — no X account or API keys required.</p></div>
+            <button type="button" class="faq-trigger"><span>How do I download a Twitter profile picture?</span><span class="arrow" aria-hidden="true">&#9662;</span></button>
+            <div class="faq-content"><p>Enter a public X username, such as <code>@username</code>, or a profile link. Select Get Profile Picture, preview the result, and choose Download Image to save the available image.</p></div>
           </div>
           <div class="xdl-faq-item faq-item">
-            <button class="faq-trigger"><span>How do I download an X profile picture?</span><span class="arrow">&#9662;</span></button>
-            <div class="faq-content"><p>Enter any valid username (e.g. @username) or profile link (e.g. https://x.com/username), click "Get Profile Picture", and once the preview appears, click "Download HD" to save it locally.</p></div>
+            <button type="button" class="faq-trigger"><span>Can I use a Twitter.com profile link?</span><span class="arrow" aria-hidden="true">&#9662;</span></button>
+            <div class="faq-content"><p>Yes. Profile links from both <code>x.com</code> and <code>twitter.com</code> are supported. You can also enter the account’s username.</p></div>
           </div>
           <div class="xdl-faq-item faq-item">
-            <button class="faq-trigger"><span>Can I download a private X profile picture?</span><span class="arrow">&#9662;</span></button>
-            <div class="faq-content"><p>No. Private profiles, locked accounts, and accounts requiring login cannot be viewed or downloaded. The tool respects all privacy restrictions.</p></div>
+            <button type="button" class="faq-trigger"><span>Can I download a profile picture from a private account?</span><span class="arrow" aria-hidden="true">&#9662;</span></button>
+            <div class="faq-content"><p>The tool only retrieves profile images that are publicly accessible. It does not bypass protected-account settings or sign-in requirements.</p></div>
           </div>
           <div class="xdl-faq-item faq-item">
-            <button class="faq-trigger"><span>Does the downloader reduce image quality?</span><span class="arrow">&#9662;</span></button>
-            <div class="faq-content"><p>No. The worker fetches the full resolution version directly from X CDN servers without compression or downsampling.</p></div>
+            <button type="button" class="faq-trigger"><span>What image quality or size will I get?</span><span class="arrow" aria-hidden="true">&#9662;</span></button>
+            <div class="faq-content"><p>The available image version and dimensions depend on the profile image and source data X provides. The tool does not upscale the image or add detail.</p></div>
           </div>
           <div class="xdl-faq-item faq-item">
-            <button class="faq-trigger"><span>Is the X DP downloader free?</span><span class="arrow">&#9662;</span></button>
-            <div class="faq-content"><p>Yes — 100% free with no hidden fees, subscriptions, or login requirements.</p></div>
+            <button type="button" class="faq-trigger"><span>Why can’t I find a profile picture?</span><span class="arrow" aria-hidden="true">&#9662;</span></button>
+            <div class="faq-content"><p>Check the username or profile link. Deleted, suspended, protected, or sign-in-restricted accounts, default avatars, and temporary source issues may not return an image.</p></div>
           </div>
           <div class="xdl-faq-item faq-item">
-            <button class="faq-trigger"><span>Does the tool store profile pictures?</span><span class="arrow">&#9662;</span></button>
-            <div class="faq-content"><p>No. The tool is completely stateless. It streams data on-demand and does not store images, usernames, or search history anywhere.</p></div>
+            <button type="button" class="faq-trigger"><span>Can I use this downloader on my phone?</span><span class="arrow" aria-hidden="true">&#9662;</span></button>
+            <div class="faq-content"><p>Yes. Open this page in your phone’s browser, enter a public username or profile link, and download the available image. Check the browser’s downloads list or your device’s Downloads folder.</p></div>
           </div>
           <div class="xdl-faq-item faq-item">
-            <button class="faq-trigger"><span>Can I use a Twitter URL instead of an X URL?</span><span class="arrow">&#9662;</span></button>
-            <div class="faq-content"><p>Yes. The tool accepts both new x.com URLs and legacy twitter.com URLs seamlessly.</p></div>
+            <button type="button" class="faq-trigger"><span>Can I reuse or repost a downloaded profile picture?</span><span class="arrow" aria-hidden="true">&#9662;</span></button>
+            <div class="faq-content"><p>Downloading an image does not grant permission to reuse it. Ask the account holder before reposting or using the picture when permission is required.</p></div>
           </div>
         </div>
       </div>
     </section>
-
   </main>
 
   <!-- Footer -->
@@ -531,19 +555,19 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <a href="/" class="logo" aria-label="TwiXgrab Home">
-            <img class="logo-icon" src="https://twitter.threadsgrab.com/twixgrab-favicon.png" alt="TwiXgrab Logo" width="40" height="40" loading="lazy" decoding="async" />
-            <span>TwiXgrab</span>
+          <a href="/" class="logo" aria-label="Twitter Downloader Home">
+            <img class="logo-icon" src="./twitter-downloader-icon.svg" alt="Twitter Downloader Logo" width="40" height="40" loading="lazy" decoding="async" />
+            <span>Twitter Downloader</span>
           </a>
           <p>Free online tools to download X / Twitter media. No signup, no software, no limits.</p>
         </div>
         <div class="footer-col">
           <h4>Tools</h4>
           <ul class="footer-links">
-            <li><a href="/">Threads Video Downloader</a></li>
-            <li><a href="/twitter-image-downloader">Threads Image Downloader</a></li>
-            <li><a href="/twitter-dp-downloader">Threads DP Downloader</a></li>
-            <li><a href="/twitter-follower-counter">Threads Follower Counter</a></li>
+            <li><a href="/twitter-video-downloader">Twitter Video Downloader</a></li>
+            <li><a href="/twitter-image-downloader">Twitter Image Downloader</a></li>
+            <li><a href="/twitter-dp-downloader">Twitter DP Downloader</a></li>
+            <li><a href="/twitter-follower-counter">Twitter Follower Counter</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -558,7 +582,7 @@
         <div class="footer-col">
           <h4>Legal &amp; Support</h4>
           <ul class="footer-links">
-            <li><a href="/disclaimer">DMCA Policy</a></li>
+            <li><a href="/disclaimer">Copyright Requests</a></li>
             <li>
               <a href="mailto:contact.themistero@gmail.com" class="footer-link-email">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -569,15 +593,24 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <div>&copy; 2026 TwiXgrab. All rights reserved.</div>
+        <div>&copy; 2026 Twitter Downloader. All rights reserved.</div>
         <div class="footer-disclaimer-note">Disclaimer: This tool is independent and not affiliated with X Corp., Twitter, Meta, or Threads.</div>
       </div>
     </div>
   </footer>
 
   <!-- Client Script (downloader logic — untouched) -->
-  <script src="/dpscript.js"></script>
+  <script src="dpscript.js"></script>
+  <script>
+    const sharedUrl = new URLSearchParams(window.location.search).get('url');
+    if (sharedUrl) {
+      const sharedInput = document.getElementById('usernameInput');
+      const sharedForm = document.getElementById('downloaderForm');
+      sharedInput.value = sharedUrl;
+      sharedForm.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+    }
+  </script>
   <!-- Mobile nav -->
-  <script src="/romitp.js"></script>
+  <script src="romitp.js"></script>
 </body>
 </html>

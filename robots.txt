@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://twitterdownloader.threadsgrab.com/sitemap.xml

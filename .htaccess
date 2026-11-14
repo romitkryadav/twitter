@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteRule ^index\.html$ / [R=301,L]
+RewriteRule ^(about|contact|disclaimer|privacy-policy|twitter-dp-downloader|twitter-follower-counter|twitter-image-downloader|twitter-video-downloader)\.html$ /$1 [R=301,L,NE]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(about|contact|disclaimer|privacy-policy|twitter-dp-downloader|twitter-follower-counter|twitter-image-downloader|twitter-video-downloader)/?$ $1.html [L]

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Twitter Downloader</title>
+  <defs>
+    <linearGradient id="brand" x1="8" y1="5" x2="57" y2="59" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A855F7"/>
+      <stop offset="1" stop-color="#6254E8"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="17" fill="url(#brand)"/>
+  <path d="M16.5 13.5 43 40M43 13.5 16.5 40" fill="none" stroke="#fff" stroke-width="6.5" stroke-linecap="round"/>
+  <circle cx="46" cy="46" r="13" fill="#171321" stroke="#fff" stroke-width="2"/>
+  <path d="M46 39.5v10m-4.5-4.2L46 50l4.5-4.7M41.5 53h9" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

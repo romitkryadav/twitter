@@ -1,0 +1,17 @@
+/index.html / 301
+/about.html /about 301
+/contact.html /contact 301
+/disclaimer.html /disclaimer 301
+/privacy-policy.html /privacy-policy 301
+/twitter-dp-downloader.html /twitter-dp-downloader 301
+/twitter-follower-counter.html /twitter-follower-counter 301
+/twitter-image-downloader.html /twitter-image-downloader 301
+/twitter-video-downloader.html /twitter-video-downloader 301
+/about /about.html 200
+/contact /contact.html 200
+/disclaimer /disclaimer.html 200
+/privacy-policy /privacy-policy.html 200
+/twitter-dp-downloader /twitter-dp-downloader.html 200
+/twitter-follower-counter /twitter-follower-counter.html 200
+/twitter-image-downloader /twitter-image-downloader.html 200
+/twitter-video-downloader /twitter-video-downloader.html 200
